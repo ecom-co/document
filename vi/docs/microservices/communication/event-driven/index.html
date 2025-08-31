@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="vi" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-microservices/communication/event-driven" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">Event-Driven Communication | NestJS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ecom-co.github.io/document/vi/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ecom-co.github.io/document/vi/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ecom-co.github.io/document/vi/docs/microservices/communication/event-driven"><meta data-rh="true" property="og:locale" content="vi"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="vi"><meta data-rh="true" name="docsearch:language" content="vi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Event-Driven Communication | NestJS Documentation"><meta data-rh="true" name="description" content="Event-Driven Communication giống như &quot;hệ thống thông báo&quot; - services publish events và services khác subscribe để phản ứng, tạo ra hệ thống loose coupling và reactive."><meta data-rh="true" property="og:description" content="Event-Driven Communication giống như &quot;hệ thống thông báo&quot; - services publish events và services khác subscribe để phản ứng, tạo ra hệ thống loose coupling và reactive."><link data-rh="true" rel="icon" href="/document/vi/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ecom-co.github.io/document/vi/docs/microservices/communication/event-driven"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/event-driven" hreflang="en"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/vi/docs/microservices/communication/event-driven" hreflang="vi"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/event-driven" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Event-Driven Communication","item":"https://ecom-co.github.io/document/vi/docs/microservices/communication/event-driven"}]}</script><link rel="alternate" type="application/rss+xml" href="/document/vi/blog/rss.xml" title="NestJS Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/document/vi/blog/atom.xml" title="NestJS Documentation Atom Feed"><link rel="stylesheet" href="/document/vi/assets/css/styles.82925b1f.css">
+<script src="/document/vi/assets/js/runtime~main.2032a609.js" defer="defer"></script>
+<script src="/document/vi/assets/js/main.c5601bfa.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/document/vi/img/logo.svg"><div role="region" aria-label="Chuyển tới nội dung chính"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Chuyển tới nội dung chính</a></div><nav aria-label="Thanh điều hướng" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Đóng - mở thanh điều hướng" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/document/vi/"><div class="navbar__logo"><img src="/document/vi/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/document/vi/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">NestJS</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/document/vi/docs/">Docs</a><a class="navbar__item navbar__link" href="/document/vi/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Tìm kiếm..." aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div><a href="https://github.com/ecom-co/document" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Tiếng Việt</a><ul class="dropdown__menu"><li><a href="/document/docs/microservices/communication/event-driven" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/document/vi/docs/microservices/communication/event-driven" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="vi">Tiếng Việt</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Chuyển đổi chế độ sáng và tối (hiện tại là system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Trở lại đầu trang" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Thanh điều hướng tài liệu" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/vi/docs/">NestJS là gì?</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/vi/docs/installation">Cài đặt NestJS</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/overview/modules">Overview</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/http-exception/http-methods">HTTP &amp; Exception Handling</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/document/vi/docs/microservices/microservices-overview">Microservices &amp; Communication</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-overview">Microservices Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/document/vi/docs/microservices/communication/communication-overview">Communication Protocols</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/communication-overview">Communication Overview</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/grpc-protocol">gRPC Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/rest-protocol">REST Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/message-queues">Message Queues</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/websockets">WebSockets</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/document/vi/docs/microservices/communication/event-driven">Event-Driven Communication</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/service-discovery">Service Discovery</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/load-balancing">Load Balancing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-patterns">Microservices Patterns</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-testing">Microservices Testing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-deployment">Microservices Deployment</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/ecom-co/ecom-co-overview">Ecom-co Libraries</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Liên kết điều hướng"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Trang chủ" class="breadcrumbs__link" href="/document/vi/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Microservices &amp; Communication</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Communication Protocols</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Event-Driven Communication</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">Trên trang này</button></div><div class="theme-doc-markdown markdown"><header><h1>Event-Driven Communication</h1></header>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Khái niệm cơ bản</div><div class="admonitionContent_BuS1"><p>Event-Driven Communication giống như &quot;hệ thống thông báo&quot; - services publish events và services khác subscribe để phản ứng, tạo ra hệ thống loose coupling và reactive.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="event-driven-communication-là-gì">Event-Driven Communication là gì?<a href="#event-driven-communication-là-gì" class="hash-link" aria-label="Đường dẫn trực tiếp đến Event-Driven Communication là gì?" title="Đường dẫn trực tiếp đến Event-Driven Communication là gì?">​</a></h2>
+<p><strong>Lý thuyết cơ bản:</strong>
+Event-Driven Communication là một architectural pattern nơi services giao tiếp thông qua events. Services không gọi trực tiếp nhau mà publish events và subscribe vào events mà họ quan tâm. Đây là pattern có độ coupling thấp nhất và high scalability.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Event Publishing</strong>: Services publish events về actions</li>
+<li><strong>Event Subscription</strong>: Services subscribe vào events quan tâm</li>
+<li><strong>Loose Coupling</strong>: Services không biết nhau trực tiếp</li>
+<li><strong>Asynchronous</strong>: Events được xử lý asynchronously</li>
+<li><strong>Event Bus</strong>: Central event broker quản lý events</li>
+<li><strong>Reactive Programming</strong>: Services phản ứng với events</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Creation</strong>: Service tạo event về một action</li>
+<li><strong>Event Publishing</strong>: Service publish event đến event bus</li>
+<li><strong>Event Distribution</strong>: Event bus distribute event đến subscribers</li>
+<li><strong>Event Handling</strong>: Subscribers xử lý events</li>
+<li><strong>Event Processing</strong>: Business logic được thực hiện</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Event State</strong>: Created → Published → Distributed → Processed → Completed</li>
+<li><strong>Service State</strong>: Active → Publishing → Active → Subscribing → Processing → Active</li>
+<li><strong>System State</strong>: Stable → Event Cascade → Processing → Stable</li>
+</ul>
+<p><strong>Điểm mạnh (Strengths):</strong></p>
+<ul>
+<li><strong>Loose Coupling</strong>: Services không biết nhau trực tiếp</li>
+<li><strong>High Scalability</strong>: Dễ dàng scale services</li>
+<li><strong>Flexibility</strong>: Dễ dàng thêm/bớt services</li>
+<li><strong>Reactive</strong>: Services phản ứng với events</li>
+<li><strong>Event Sourcing</strong>: Support event sourcing pattern</li>
+<li><strong>CQRS Support</strong>: Support Command Query Responsibility Segregation</li>
+<li><strong>Audit Trail</strong>: Complete audit trail của events</li>
+<li><strong>Asynchronous</strong>: Asynchronous processing</li>
+</ul>
+<p><strong>Điểm yếu (Weaknesses):</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Architecture phức tạp</li>
+<li><strong>Event Ordering</strong>: Khó đảm bảo thứ tự events</li>
+<li><strong>Debugging</strong>: Khó debug event flow</li>
+<li><strong>Performance Overhead</strong>: Event routing overhead</li>
+<li><strong>Event Versioning</strong>: Complex event versioning</li>
+<li><strong>Data Consistency</strong>: Khó đảm bảo data consistency</li>
+<li><strong>Testing Complexity</strong>: Complex testing scenarios</li>
+<li><strong>Monitoring Difficulty</strong>: Khó monitor event flow</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-event-driven-communication">Khi nào nên dùng và khi nào không nên dùng Event-Driven Communication<a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-event-driven-communication" class="hash-link" aria-label="Đường dẫn trực tiếp đến Khi nào nên dùng và khi nào không nên dùng Event-Driven Communication" title="Đường dẫn trực tiếp đến Khi nào nên dùng và khi nào không nên dùng Event-Driven Communication">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-event-driven-communication"><strong>Khi nào NÊN dùng Event-Driven Communication:</strong><a href="#khi-nào-nên-dùng-event-driven-communication" class="hash-link" aria-label="Đường dẫn trực tiếp đến khi-nào-nên-dùng-event-driven-communication" title="Đường dẫn trực tiếp đến khi-nào-nên-dùng-event-driven-communication">​</a></h3>
+<p><strong>1. Complex Workflows:</strong></p>
+<ul>
+<li><strong>Multi-step Processes</strong>: Complex business workflows</li>
+<li><strong>Saga Pattern</strong>: Distributed transaction management</li>
+<li><strong>Workflow Orchestration</strong>: Business process orchestration</li>
+<li><strong>Event Chaining</strong>: Events trigger other events</li>
+</ul>
+<p><strong>2. Loose Coupling Requirements:</strong></p>
+<ul>
+<li><strong>Microservices Architecture</strong>: Loose coupling giữa services</li>
+<li><strong>Independent Services</strong>: Services cần độc lập</li>
+<li><strong>Service Evolution</strong>: Services evolve independently</li>
+<li><strong>Technology Diversity</strong>: Different technologies</li>
+</ul>
+<p><strong>3. Reactive Systems:</strong></p>
+<ul>
+<li><strong>Real-time Systems</strong>: Real-time event processing</li>
+<li><strong>IoT Applications</strong>: Device event processing</li>
+<li><strong>Streaming Applications</strong>: Data streaming</li>
+<li><strong>Event Processing</strong>: Complex event processing</li>
+</ul>
+<p><strong>4. Audit &amp; Compliance:</strong></p>
+<ul>
+<li><strong>Audit Requirements</strong>: Complete audit trail</li>
+<li><strong>Compliance Needs</strong>: Regulatory compliance</li>
+<li><strong>Data Lineage</strong>: Track data lineage</li>
+<li><strong>Historical Analysis</strong>: Historical data analysis</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-không-nên-dùng-event-driven-communication"><strong>Khi nào KHÔNG NÊN dùng Event-Driven Communication:</strong><a href="#khi-nào-không-nên-dùng-event-driven-communication" class="hash-link" aria-label="Đường dẫn trực tiếp đến khi-nào-không-nên-dùng-event-driven-communication" title="Đường dẫn trực tiếp đến khi-nào-không-nên-dùng-event-driven-communication">​</a></h3>
+<p><strong>1. Simple CRUD Operations:</strong></p>
+<ul>
+<li><strong>Basic APIs</strong>: Simple CRUD operations</li>
+<li><strong>Direct Communication</strong>: Services cần gọi trực tiếp</li>
+<li><strong>Simple Workflows</strong>: Basic business processes</li>
+<li><strong>Low Complexity</strong>: Không cần complex event handling</li>
+</ul>
+<p><strong>2. Synchronous Requirements:</strong></p>
+<ul>
+<li><strong>Immediate Response</strong>: Cần response ngay lập tức</li>
+<li><strong>Synchronous Operations</strong>: Operations cần synchronous</li>
+<li><strong>Real-time Validation</strong>: Real-time validation</li>
+<li><strong>Immediate Consistency</strong>: Cần consistency ngay lập tức</li>
+</ul>
+<p><strong>3. Performance Critical:</strong></p>
+<ul>
+<li><strong>Low Latency</strong>: Cần latency thấp</li>
+<li><strong>High Throughput</strong>: High throughput requirements</li>
+<li><strong>Resource Constraints</strong>: Limited resources</li>
+<li><strong>Simple Communication</strong>: Simple communication needs</li>
+</ul>
+<p><strong>4. Data Consistency Requirements:</strong></p>
+<ul>
+<li><strong>ACID Transactions</strong>: Cần ACID compliance</li>
+<li><strong>Immediate Consistency</strong>: Cần consistency ngay lập tức</li>
+<li><strong>Data Integrity</strong>: Critical data integrity</li>
+<li><strong>Synchronous Validation</strong>: Cần validate ngay lập tức</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cách-áp-dụng-event-driven-communication-hiệu-quả">Cách áp dụng Event-Driven Communication hiệu quả<a href="#cách-áp-dụng-event-driven-communication-hiệu-quả" class="hash-link" aria-label="Đường dẫn trực tiếp đến Cách áp dụng Event-Driven Communication hiệu quả" title="Đường dẫn trực tiếp đến Cách áp dụng Event-Driven Communication hiệu quả">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-chiến-lược-áp-dụng-adoption-strategy"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-chiến-lược-áp-dụng-adoption-strategy" title="Đường dẫn trực tiếp đến 1-chiến-lược-áp-dụng-adoption-strategy">​</a></h3>
+<p><strong>Phase 1: Assessment &amp; Planning</strong></p>
+<ul>
+<li><strong>Event Analysis</strong>: Analyze business events</li>
+<li><strong>Event Design</strong>: Design event structure</li>
+<li><strong>Event Flow</strong>: Plan event flow</li>
+<li><strong>Technology Selection</strong>: Choose event bus technology</li>
+</ul>
+<p><strong>Phase 2: Implementation</strong></p>
+<ul>
+<li><strong>Event Bus Setup</strong>: Setup event bus infrastructure</li>
+<li><strong>Event Publishers</strong>: Implement event publishers</li>
+<li><strong>Event Handlers</strong>: Implement event handlers</li>
+<li><strong>Event Routing</strong>: Implement event routing</li>
+</ul>
+<p><strong>Phase 3: Testing &amp; Deployment</strong></p>
+<ul>
+<li><strong>Event Testing</strong>: Test event flow</li>
+<li><strong>Integration Testing</strong>: Test end-to-end scenarios</li>
+<li><strong>Performance Testing</strong>: Load testing và optimization</li>
+<li><strong>Gradual Rollout</strong>: Deploy từng bước</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-best-practices-khi-áp-dụng"><strong>2. Best Practices khi áp dụng:</strong><a href="#2-best-practices-khi-áp-dụng" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-best-practices-khi-áp-dụng" title="Đường dẫn trực tiếp đến 2-best-practices-khi-áp-dụng">​</a></h3>
+<p><strong>Event Design:</strong></p>
+<ul>
+<li><strong>Event Naming</strong>: Consistent event naming convention</li>
+<li><strong>Event Versioning</strong>: Implement event versioning</li>
+<li><strong>Event Schema</strong>: Define event schema</li>
+<li><strong>Event Validation</strong>: Validate event data</li>
+</ul>
+<p><strong>Event Handling:</strong></p>
+<ul>
+<li><strong>Idempotency</strong>: Ensure idempotent operations</li>
+<li><strong>Error Handling</strong>: Proper error handling</li>
+<li><strong>Event Ordering</strong>: Handle event ordering</li>
+<li><strong>Dead Letter Queues</strong>: Implement dead letter queues</li>
+</ul>
+<p><strong>Performance Optimization:</strong></p>
+<ul>
+<li><strong>Event Batching</strong>: Batch events when possible</li>
+<li><strong>Event Filtering</strong>: Filter events at source</li>
+<li><strong>Event Routing</strong>: Optimize event routing</li>
+<li><strong>Event Storage</strong>: Optimize event storage</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-common-pitfalls-và-cách-tránh"><strong>3. Common Pitfalls và cách tránh:</strong><a href="#3-common-pitfalls-và-cách-tránh" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-common-pitfalls-và-cách-tránh" title="Đường dẫn trực tiếp đến 3-common-pitfalls-và-cách-tránh">​</a></h3>
+<p><strong>Design Issues:</strong></p>
+<ul>
+<li><strong>❌ Complex Events</strong>: Events quá phức tạp</li>
+<li><strong>❌ No Versioning</strong>: Không có event versioning</li>
+<li><strong>❌ Poor Naming</strong>: Event naming không nhất quán</li>
+<li><strong>❌ No Schema</strong>: Không có event schema</li>
+</ul>
+<p><strong>Performance Issues:</strong></p>
+<ul>
+<li><strong>❌ No Batching</strong>: Không batch events</li>
+<li><strong>❌ No Filtering</strong>: Không filter events</li>
+<li><strong>❌ Poor Routing</strong>: Event routing không tối ưu</li>
+<li><strong>❌ No Monitoring</strong>: Không monitor event flow</li>
+</ul>
+<p><strong>✅ Cách tránh:</strong></p>
+<ul>
+<li><strong>Design First</strong>: Thiết kế event structure trước</li>
+<li><strong>Plan for Scale</strong>: Plan scaling từ đầu</li>
+<li><strong>Monitor Everything</strong>: Monitor tất cả aspects</li>
+<li><strong>Test Thoroughly</strong>: Test đầy đủ các scenarios</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="kiến-trúc-event-driven-communication">Kiến trúc Event-Driven Communication<a href="#kiến-trúc-event-driven-communication" class="hash-link" aria-label="Đường dẫn trực tiếp đến Kiến trúc Event-Driven Communication" title="Đường dẫn trực tiếp đến Kiến trúc Event-Driven Communication">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-event-flow---lý-thuyết-và-quy-trình"><strong>1. Event Flow - Lý thuyết và Quy trình</strong><a href="#1-event-flow---lý-thuyết-và-quy-trình" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-event-flow---lý-thuyết-và-quy-trình" title="Đường dẫn trực tiếp đến 1-event-flow---lý-thuyết-và-quy-trình">​</a></h3>
+<p><strong>Lý thuyết về Event Flow:</strong>
+Event flow mô tả cách events di chuyển từ publishers đến subscribers thông qua event bus. Flow này đảm bảo loose coupling và reliable event delivery.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Unidirectional Flow</strong>: Events flow từ publishers đến subscribers</li>
+<li><strong>Event Bus</strong>: Central event routing và management</li>
+<li><strong>Event Distribution</strong>: Distribute events đến subscribers</li>
+<li><strong>Event Processing</strong>: Process events asynchronously</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Creation</strong>: Publisher tạo event</li>
+<li><strong>Event Publishing</strong>: Publisher publish event đến event bus</li>
+<li><strong>Event Routing</strong>: Event bus route event đến subscribers</li>
+<li><strong>Event Processing</strong>: Subscribers process events</li>
+<li><strong>Event Completion</strong>: Event processing completed</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Event State</strong>: Created → Published → Routed → Processing → Completed</li>
+<li><strong>Event Bus State</strong>: Idle → Routing → Distributing → Idle</li>
+<li><strong>Processing State</strong>: Pending → Active → Completed → Failed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Loose Coupling</strong>: Publishers và subscribers không biết nhau</li>
+<li><strong>Scalability</strong>: Dễ dàng scale services</li>
+<li><strong>Flexibility</strong>: Flexible event handling</li>
+<li><strong>Reliability</strong>: Reliable event delivery</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Event flow phức tạp</li>
+<li><strong>Event Ordering</strong>: Khó đảm bảo event ordering</li>
+<li><strong>Debugging</strong>: Khó debug event flow</li>
+<li><strong>Performance</strong>: Event routing overhead</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-event-flow">**2. <strong>Event Flow</strong><a href="#2-event-flow" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-event-flow" title="Đường dẫn trực tiếp đến 2-event-flow">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-event-types---lý-thuyết-và-thực-hành"><strong>3. Event Types - Lý thuyết và Thực hành</strong><a href="#3-event-types---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-event-types---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 3-event-types---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Event Types:</strong>
+Event types định nghĩa các loại events khác nhau trong system. Mỗi event type có structure và purpose riêng biệt.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Domain Events</strong>: Business domain events</li>
+<li><strong>Integration Events</strong>: System integration events</li>
+<li><strong>Infrastructure Events</strong>: Infrastructure events</li>
+<li><strong>Custom Events</strong>: Custom business events</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Classification</strong>: Classify events theo type</li>
+<li><strong>Event Structure</strong>: Define event structure</li>
+<li><strong>Event Validation</strong>: Validate event data</li>
+<li><strong>Event Routing</strong>: Route events theo type</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Event State</strong>: Classified → Structured → Validated → Routed → Processed</li>
+<li><strong>Type State</strong>: Identified → Defined → Validated → Active</li>
+<li><strong>Routing State</strong>: Pending → Routing → Routed → Completed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Event Organization</strong>: Organize events theo type</li>
+<li><strong>Type Safety</strong>: Type-safe event handling</li>
+<li><strong>Event Validation</strong>: Validate events theo type</li>
+<li><strong>Event Routing</strong>: Route events theo type</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Type Complexity</strong>: Event type complexity</li>
+<li><strong>Type Management</strong>: Manage event types</li>
+<li><strong>Type Evolution</strong>: Handle type evolution</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-event-types">**4. <strong>Event Types</strong><a href="#4-event-types" class="hash-link" aria-label="Đường dẫn trực tiếp đến 4-event-types" title="Đường dẫn trực tiếp đến 4-event-types">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="nestjs-implementation">NestJS Implementation<a href="#nestjs-implementation" class="hash-link" aria-label="Đường dẫn trực tiếp đến NestJS Implementation" title="Đường dẫn trực tiếp đến NestJS Implementation">​</a></h2>
+<p><strong>Lý thuyết về Event-Driven Communication trong NestJS:</strong>
+NestJS cung cấp built-in support cho event-driven communication thông qua <code>@nestjs/event-emitter</code> package. Nó cho phép bạn publish và subscribe events một cách dễ dàng.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Event Emitter</strong>: Built-in event emitter</li>
+<li><strong>Event Decorators</strong>: Sử dụng <code>@OnEvent()</code> decorator</li>
+<li><strong>Event Publishing</strong>: Publish events với <code>EventEmitter2</code></li>
+<li><strong>Event Handling</strong>: Handle events với event handlers</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Emitter Setup</strong>: Setup event emitter</li>
+<li><strong>Event Publishing</strong>: Publish events</li>
+<li><strong>Event Subscription</strong>: Subscribe vào events</li>
+<li><strong>Event Handling</strong>: Handle events</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Emitter State</strong>: Uninitialized → Initialized → Active → Publishing</li>
+<li><strong>Event State</strong>: Created → Published → Distributed → Handled</li>
+<li><strong>Handler State</strong>: Unregistered → Registered → Active → Processing</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Native Integration</strong>: Tích hợp tốt với NestJS</li>
+<li><strong>Event Decorators</strong>: Sử dụng decorators</li>
+<li><strong>Type Safety</strong>: TypeScript support</li>
+<li><strong>Easy Testing</strong>: Dễ dàng test</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Learning Curve</strong>: Cần hiểu event concepts</li>
+<li><strong>Event Complexity</strong>: Event handling complexity</li>
+<li><strong>State Management</strong>: Event state management</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-event-emitter-setup---lý-thuyết-và-thực-hành"><strong>1. Event Emitter Setup - Lý thuyết và Thực hành</strong><a href="#1-event-emitter-setup---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-event-emitter-setup---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 1-event-emitter-setup---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Event Emitter Setup:</strong>
+Event Emitter Setup trong NestJS liên quan đến việc cấu hình event emitter và thiết lập event infrastructure. Nó cho phép services publish và subscribe events.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Event Emitter Configuration</strong>: Configure event emitter</li>
+<li><strong>Event Bus Setup</strong>: Setup event bus</li>
+<li><strong>Event Routing</strong>: Configure event routing</li>
+<li><strong>Event Storage</strong>: Configure event storage</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Configuration</strong>: Configure event emitter</li>
+<li><strong>Event Bus Setup</strong>: Setup event bus</li>
+<li><strong>Event Routing</strong>: Configure routing</li>
+<li><strong>Event Storage</strong>: Configure storage</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Configuration State</strong>: Unconfigured → Configured → Active</li>
+<li><strong>Event Bus State</strong>: Uninitialized → Initialized → Active</li>
+<li><strong>Routing State</strong>: Unconfigured → Configured → Active</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Flexible Configuration</strong>: Flexible configuration options</li>
+<li><strong>Event Routing</strong>: Configurable event routing</li>
+<li><strong>Event Storage</strong>: Configurable event storage</li>
+<li><strong>Performance Tuning</strong>: Performance tuning options</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Configuration Complexity</strong>: Configuration complexity</li>
+<li><strong>Setup Overhead</strong>: Setup overhead</li>
+<li><strong>Configuration Management</strong>: Manage configurations</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-event-emitter-setup">**2. <strong>Event Emitter Setup</strong><a href="#2-event-emitter-setup" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-event-emitter-setup" title="Đường dẫn trực tiếp đến 2-event-emitter-setup">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-event-definitions---lý-thuyết-và-thực-hành"><strong>3. Event Definitions - Lý thuyết và Thực hành</strong><a href="#3-event-definitions---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-event-definitions---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 3-event-definitions---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Event Definitions:</strong>
+Event Definitions định nghĩa cấu trúc và properties của events. Chúng đảm bảo type safety và consistency trong event handling.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Event Structure</strong>: Define event structure</li>
+<li><strong>Event Properties</strong>: Define event properties</li>
+<li><strong>Event Validation</strong>: Validate event data</li>
+<li><strong>Event Versioning</strong>: Handle event versioning</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Design</strong>: Design event structure</li>
+<li><strong>Property Definition</strong>: Define event properties</li>
+<li><strong>Validation Rules</strong>: Define validation rules</li>
+<li><strong>Version Management</strong>: Manage event versions</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Event State</strong>: Designed → Defined → Validated → Versioned</li>
+<li><strong>Property State</strong>: Identified → Defined → Validated → Active</li>
+<li><strong>Version State</strong>: Created → Versioned → Active → Deprecated</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Type Safety</strong>: Type-safe event handling</li>
+<li><strong>Event Validation</strong>: Validate event data</li>
+<li><strong>Event Consistency</strong>: Consistent event structure</li>
+<li><strong>Event Evolution</strong>: Handle event evolution</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Definition Complexity</strong>: Event definition complexity</li>
+<li><strong>Version Management</strong>: Version management complexity</li>
+<li><strong>Validation Overhead</strong>: Validation overhead</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-event-definitions">**4. <strong>Event Definitions</strong><a href="#4-event-definitions" class="hash-link" aria-label="Đường dẫn trực tiếp đến 4-event-definitions" title="Đường dẫn trực tiếp đến 4-event-definitions">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="event-driven-patterns">Event-Driven Patterns<a href="#event-driven-patterns" class="hash-link" aria-label="Đường dẫn trực tiếp đến Event-Driven Patterns" title="Đường dẫn trực tiếp đến Event-Driven Patterns">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-event-sourcing---lý-thuyết-và-thực-hành"><strong>1. Event Sourcing - Lý thuyết và Thực hành</strong><a href="#1-event-sourcing---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-event-sourcing---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 1-event-sourcing---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Event Sourcing:</strong>
+Event Sourcing là một pattern lưu trữ tất cả changes như events thay vì chỉ lưu current state. Pattern này cho phép reconstruct state và provide audit trail.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Event Store</strong>: Store tất cả events</li>
+<li><strong>State Reconstruction</strong>: Reconstruct state từ events</li>
+<li><strong>Audit Trail</strong>: Complete audit trail</li>
+<li><strong>Event Replay</strong>: Replay events</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Event Creation</strong>: Create events cho mọi change</li>
+<li><strong>Event Storage</strong>: Store events trong event store</li>
+<li><strong>State Reconstruction</strong>: Reconstruct state từ events</li>
+<li><strong>Event Replay</strong>: Replay events khi cần</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Event State</strong>: Created → Stored → Reconstructed → Replayed</li>
+<li><strong>State State</strong>: Current → Reconstructed → Historical</li>
+<li><strong>Store State</strong>: Empty → Storing → Stored → Replaying</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Complete History</strong>: Complete change history</li>
+<li><strong>Audit Trail</strong>: Complete audit trail</li>
+<li><strong>State Reconstruction</strong>: Reconstruct any state</li>
+<li><strong>Event Replay</strong>: Replay events</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Storage Requirements</strong>: High storage requirements</li>
+<li><strong>Complexity</strong>: Implementation complexity</li>
+<li><strong>Performance Impact</strong>: Performance impact</li>
+<li><strong>Query Complexity</strong>: Complex queries</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-event-sourcing-pattern">**5. <strong>Event Sourcing Pattern</strong><a href="#5-event-sourcing-pattern" class="hash-link" aria-label="Đường dẫn trực tiếp đến 5-event-sourcing-pattern" title="Đường dẫn trực tiếp đến 5-event-sourcing-pattern">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-cqrs---lý-thuyết-và-thực-hành"><strong>2. CQRS - Lý thuyết và Thực hành</strong><a href="#2-cqrs---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-cqrs---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 2-cqrs---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về CQRS:</strong>
+CQRS (Command Query Responsibility Segregation) là một pattern tách biệt read và write operations. Commands modify state, queries read state.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Command Side</strong>: Handle write operations</li>
+<li><strong>Query Side</strong>: Handle read operations</li>
+<li><strong>Event Sourcing</strong>: Often used với event sourcing</li>
+<li><strong>Separate Models</strong>: Separate read và write models</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Command Handling</strong>: Handle write commands</li>
+<li><strong>Event Publishing</strong>: Publish events về changes</li>
+<li><strong>State Update</strong>: Update write model</li>
+<li><strong>Query Handling</strong>: Handle read queries</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Command State</strong>: Received → Validated → Processed → Completed</li>
+<li><strong>Event State</strong>: Created → Published → Distributed → Processed</li>
+<li><strong>Query State</strong>: Received → Routed → Executed → Returned</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Separation of Concerns</strong>: Separate read và write</li>
+<li><strong>Optimization</strong>: Optimize read và write separately</li>
+<li><strong>Scalability</strong>: Scale read và write independently</li>
+<li><strong>Flexibility</strong>: Flexible read và write models</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Implementation complexity</li>
+<li><strong>Consistency</strong>: Eventual consistency</li>
+<li><strong>Data Synchronization</strong>: Data synchronization complexity</li>
+<li><strong>Learning Curve</strong>: Steep learning curve</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="6-cqrs-pattern">**6. <strong>CQRS Pattern</strong><a href="#6-cqrs-pattern" class="hash-link" aria-label="Đường dẫn trực tiếp đến 6-cqrs-pattern" title="Đường dẫn trực tiếp đến 6-cqrs-pattern">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Đường dẫn trực tiếp đến Best Practices" title="Đường dẫn trực tiếp đến Best Practices">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-event-design---lý-thuyết-và-nguyên-tắc"><strong>1. Event Design - Lý thuyết và Nguyên tắc</strong><a href="#1-event-design---lý-thuyết-và-nguyên-tắc" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-event-design---lý-thuyết-và-nguyên-tắc" title="Đường dẫn trực tiếp đến 1-event-design---lý-thuyết-và-nguyên-tắc">​</a></h3>
+<p><strong>Nguyên tắc cơ bản:</strong></p>
+<ul>
+<li><strong>Event Naming</strong>: Consistent event naming convention</li>
+<li><strong>Event Versioning</strong>: Implement event versioning</li>
+<li><strong>Event Schema</strong>: Define event schema</li>
+<li><strong>Event Validation</strong>: Validate event data</li>
+</ul>
+<p><strong>Quy tắc lựa chọn:</strong></p>
+<ol>
+<li><strong>Event Granularity</strong>: Choose appropriate event granularity</li>
+<li><strong>Event Structure</strong>: Design consistent event structure</li>
+<li><strong>Event Evolution</strong>: Plan for event evolution</li>
+<li><strong>Event Documentation</strong>: Document events properly</li>
+</ol>
+<p><strong>Trade-offs cần cân nhắc:</strong></p>
+<ul>
+<li><strong>Granularity vs Performance</strong>: Balance granularity và performance</li>
+<li><strong>Structure vs Flexibility</strong>: Balance structure và flexibility</li>
+<li><strong>Versioning vs Simplicity</strong>: Balance versioning và simplicity</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-event-handling---lý-thuyết-và-chiến-lược"><strong>2. Event Handling - Lý thuyết và Chiến lược</strong><a href="#2-event-handling---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-event-handling---lý-thuyết-và-chiến-lược" title="Đường dẫn trực tiếp đến 2-event-handling---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý xử lý Events:</strong></p>
+<ul>
+<li><strong>Idempotency</strong>: Ensure idempotent operations</li>
+<li><strong>Error Handling</strong>: Handle errors gracefully</li>
+<li><strong>Event Ordering</strong>: Handle event ordering</li>
+<li><strong>Dead Letter Queues</strong>: Implement dead letter queues</li>
+</ul>
+<p><strong>Chiến lược xử lý Events:</strong></p>
+<ul>
+<li><strong>Event Processing</strong>: Process events efficiently</li>
+<li><strong>Error Recovery</strong>: Recover from errors</li>
+<li><strong>Event Monitoring</strong>: Monitor event processing</li>
+<li><strong>Performance Optimization</strong>: Optimize performance</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Ensure Idempotency</strong>: Ensure idempotent operations</li>
+<li><strong>Handle Errors</strong>: Handle errors gracefully</li>
+<li><strong>Monitor Events</strong>: Monitor event processing</li>
+<li><strong>Optimize Performance</strong>: Optimize performance</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-performance-optimization---lý-thuyết-và-chiến-lược"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-performance-optimization---lý-thuyết-và-chiến-lược" title="Đường dẫn trực tiếp đến 3-performance-optimization---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý tối ưu Performance:</strong></p>
+<ul>
+<li><strong>Event Batching</strong>: Batch events when possible</li>
+<li><strong>Event Filtering</strong>: Filter events at source</li>
+<li><strong>Event Routing</strong>: Optimize event routing</li>
+<li><strong>Event Storage</strong>: Optimize event storage</li>
+</ul>
+<p><strong>Chiến lược tối ưu Performance:</strong></p>
+<ul>
+<li><strong>Batching Strategy</strong>: Plan batching strategy</li>
+<li><strong>Filtering Strategy</strong>: Plan filtering strategy</li>
+<li><strong>Routing Strategy</strong>: Plan routing strategy</li>
+<li><strong>Storage Strategy</strong>: Plan storage strategy</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Batch Events</strong>: Batch events when possible</li>
+<li><strong>Filter Events</strong>: Filter events at source</li>
+<li><strong>Optimize Routing</strong>: Optimize event routing</li>
+<li><strong>Optimize Storage</strong>: Optimize event storage</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="so-sánh-với-các-protocol-khác">So sánh với các Protocol khác<a href="#so-sánh-với-các-protocol-khác" class="hash-link" aria-label="Đường dẫn trực tiếp đến So sánh với các Protocol khác" title="Đường dẫn trực tiếp đến So sánh với các Protocol khác">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-event-driven-vs-message-queues"><strong>1. Event-Driven vs Message Queues:</strong><a href="#1-event-driven-vs-message-queues" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-event-driven-vs-message-queues" title="Đường dẫn trực tiếp đến 1-event-driven-vs-message-queues">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event publishing và subscription</li>
+<li><strong>Message Queues</strong>: Message queuing và processing</li>
+<li><strong>Kết quả</strong>: Event-Driven là pattern, Message Queues là implementation</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event processing, reactive systems</li>
+<li><strong>Message Queues</strong>: Task distribution, load balancing</li>
+<li><strong>Kết quả</strong>: Tương tự nhau, khác implementation</li>
+</ul>
+<p><strong>Architecture:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event-driven architecture</li>
+<li><strong>Message Queues</strong>: Message queuing architecture</li>
+<li><strong>Kết quả</strong>: Event-Driven là architectural pattern</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-event-driven-vs-rest"><strong>2. Event-Driven vs REST:</strong><a href="#2-event-driven-vs-rest" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-event-driven-vs-rest" title="Đường dẫn trực tiếp đến 2-event-driven-vs-rest">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Asynchronous, event-based</li>
+<li><strong>REST</strong>: Synchronous, request-response</li>
+<li><strong>Kết quả</strong>: Event-Driven cho async, REST cho sync</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event processing, reactive systems</li>
+<li><strong>REST</strong>: API calls, simple operations</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: High throughput, async</li>
+<li><strong>REST</strong>: Lower latency, sync</li>
+<li><strong>Kết quả</strong>: Event-Driven cho throughput, REST cho latency</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-event-driven-vs-grpc"><strong>3. Event-Driven vs gRPC:</strong><a href="#3-event-driven-vs-grpc" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-event-driven-vs-grpc" title="Đường dẫn trực tiếp đến 3-event-driven-vs-grpc">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event-based, asynchronous</li>
+<li><strong>gRPC</strong>: RPC-based, synchronous</li>
+<li><strong>Kết quả</strong>: Event-Driven cho events, gRPC cho RPC calls</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: Event processing, reactive systems</li>
+<li><strong>gRPC</strong>: Service-to-service communication</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>Event-Driven</strong>: High throughput, async</li>
+<li><strong>gRPC</strong>: High performance, sync</li>
+<li><strong>Kết quả</strong>: Event-Driven cho throughput, gRPC cho performance</li>
+</ul>
+<hr>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Lời khuyên tổng kết - Lý thuyết và Thực hành</div><div class="admonitionContent_BuS1"><p><strong>Nguyên tắc cơ bản:</strong></p><ul>
+<li><strong>Protocol Selection</strong>: Event-Driven Communication phù hợp cho complex workflows và loose coupling</li>
+<li><strong>Performance vs Complexity</strong>: Event-Driven có high scalability nhưng complexity cao</li>
+<li><strong>Coupling vs Flexibility</strong>: Event-Driven loose coupling, high flexibility</li>
+</ul><p><strong>Quy tắc thực hành:</strong></p><ol>
+<li><strong>Event-Driven</strong>: Cho complex workflows, loose coupling, reactive systems</li>
+<li><strong>REST</strong>: Cho simple APIs, CRUD operations</li>
+<li><strong>gRPC</strong>: Cho high-performance, service-to-service communication</li>
+</ol><p><strong>Lý do tại sao:</strong></p><ul>
+<li><strong>Event-Driven</strong>: Loose coupling, high scalability, reactive</li>
+<li><strong>REST</strong>: Simple, universal, stateless</li>
+<li><strong>gRPC</strong>: High performance, strong typing, streaming</li>
+</ul><p><strong>Cách xử lý biến đổi:</strong></p><ul>
+<li><strong>State Management</strong>: Event-Driven event-based state, REST stateless, gRPC stateful</li>
+<li><strong>Error Handling</strong>: Event-Driven event replay, REST status codes, gRPC error codes</li>
+<li><strong>Performance Optimization</strong>: Event-Driven batching, REST caching, gRPC connection pooling</li>
+</ul></div></div>
+<p><strong>Bài tiếp theo:</strong> <a href="/document/vi/docs/microservices/service-discovery">Service Discovery</a></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/ecom-co/document/tree/main/docs/microservices/communication/event-driven.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Sửa trang này</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Trang tài liệu"><a class="pagination-nav__link pagination-nav__link--prev" href="/document/vi/docs/microservices/communication/websockets"><div class="pagination-nav__sublabel">Trước</div><div class="pagination-nav__label">WebSockets</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/document/vi/docs/microservices/service-discovery"><div class="pagination-nav__sublabel">Kế tiếp</div><div class="pagination-nav__label">Service Discovery</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#event-driven-communication-là-gì" class="table-of-contents__link toc-highlight">Event-Driven Communication là gì?</a></li><li><a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-event-driven-communication" class="table-of-contents__link toc-highlight">Khi nào nên dùng và khi nào không nên dùng Event-Driven Communication</a><ul><li><a href="#khi-nào-nên-dùng-event-driven-communication" class="table-of-contents__link toc-highlight"><strong>Khi nào NÊN dùng Event-Driven Communication:</strong></a></li><li><a href="#khi-nào-không-nên-dùng-event-driven-communication" class="table-of-contents__link toc-highlight"><strong>Khi nào KHÔNG NÊN dùng Event-Driven Communication:</strong></a></li></ul></li><li><a href="#cách-áp-dụng-event-driven-communication-hiệu-quả" class="table-of-contents__link toc-highlight">Cách áp dụng Event-Driven Communication hiệu quả</a><ul><li><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="table-of-contents__link toc-highlight"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong></a></li><li><a href="#2-best-practices-khi-áp-dụng" class="table-of-contents__link toc-highlight"><strong>2. Best Practices khi áp dụng:</strong></a></li><li><a href="#3-common-pitfalls-và-cách-tránh" class="table-of-contents__link toc-highlight"><strong>3. Common Pitfalls và cách tránh:</strong></a></li></ul></li><li><a href="#kiến-trúc-event-driven-communication" class="table-of-contents__link toc-highlight">Kiến trúc Event-Driven Communication</a><ul><li><a href="#1-event-flow---lý-thuyết-và-quy-trình" class="table-of-contents__link toc-highlight"><strong>1. Event Flow - Lý thuyết và Quy trình</strong></a></li><li><a href="#2-event-flow" class="table-of-contents__link toc-highlight">**2. <strong>Event Flow</strong></a></li><li><a href="#3-event-types---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Event Types - Lý thuyết và Thực hành</strong></a></li><li><a href="#4-event-types" class="table-of-contents__link toc-highlight">**4. <strong>Event Types</strong></a></li></ul></li><li><a href="#nestjs-implementation" class="table-of-contents__link toc-highlight">NestJS Implementation</a><ul><li><a href="#1-event-emitter-setup---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Event Emitter Setup - Lý thuyết và Thực hành</strong></a></li><li><a href="#2-event-emitter-setup" class="table-of-contents__link toc-highlight">**2. <strong>Event Emitter Setup</strong></a></li><li><a href="#3-event-definitions---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Event Definitions - Lý thuyết và Thực hành</strong></a></li><li><a href="#4-event-definitions" class="table-of-contents__link toc-highlight">**4. <strong>Event Definitions</strong></a></li></ul></li><li><a href="#event-driven-patterns" class="table-of-contents__link toc-highlight">Event-Driven Patterns</a><ul><li><a href="#1-event-sourcing---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Event Sourcing - Lý thuyết và Thực hành</strong></a></li><li><a href="#5-event-sourcing-pattern" class="table-of-contents__link toc-highlight">**5. <strong>Event Sourcing Pattern</strong></a></li><li><a href="#2-cqrs---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. CQRS - Lý thuyết và Thực hành</strong></a></li><li><a href="#6-cqrs-pattern" class="table-of-contents__link toc-highlight">**6. <strong>CQRS Pattern</strong></a></li></ul></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a><ul><li><a href="#1-event-design---lý-thuyết-và-nguyên-tắc" class="table-of-contents__link toc-highlight"><strong>1. Event Design - Lý thuyết và Nguyên tắc</strong></a></li><li><a href="#2-event-handling---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>2. Event Handling - Lý thuyết và Chiến lược</strong></a></li><li><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong></a></li></ul></li><li><a href="#so-sánh-với-các-protocol-khác" class="table-of-contents__link toc-highlight">So sánh với các Protocol khác</a><ul><li><a href="#1-event-driven-vs-message-queues" class="table-of-contents__link toc-highlight"><strong>1. Event-Driven vs Message Queues:</strong></a></li><li><a href="#2-event-driven-vs-rest" class="table-of-contents__link toc-highlight"><strong>2. Event-Driven vs REST:</strong></a></li><li><a href="#3-event-driven-vs-grpc" class="table-of-contents__link toc-highlight"><strong>3. Event-Driven vs gRPC:</strong></a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

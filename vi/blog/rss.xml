@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>NestJS Documentation Blog</title>
+        <link>https://ecom-co.github.io/document/vi/blog</link>
+        <description>NestJS Documentation Blog</description>
+        <lastBuildDate>Sun, 31 Aug 2025 22:37:14 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>vi</language>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://ecom-co.github.io/document/vi/blog/hello2</link>
+            <guid>https://ecom-co.github.io/document/vi/blog/hello2</guid>
+            <pubDate>Sun, 31 Aug 2025 22:37:14 GMT</pubDate>
+            <description><![CDATA[The best tool if you want to translate HTML5 to Markdown.]]></description>
+            <content:encoded><![CDATA[<h1>htmlmarkdown.com HTML to Markdown Converter</h1>
+<p>The best tool if you want to translate HTML5 to Markdown.</p>
+<hr>
+<p>It aims to be <a href="http://commonmark.org/" target="_blank" rel="noopener noreferrer">CommonMark</a> compliant, and includes options to style the output. These options include:</p>
+<ul>
+<li>headingStyle (setext or atx)</li>
+<li>horizontalRule (*, -, or _)</li>
+<li>bullet (*, -, or )</li>
+<li>codeBlockStyle (indented or fenced)</li>
+<li>fence (` or ~)</li>
+<li>emDelimiter (_ or *)</li>
+<li>strongDelimiter (** or __)</li>
+<li>linkStyle (inlined or referenced)</li>
+<li>linkReferenceStyle (full, collapsed, or shortcut)</li>
+</ul>]]></content:encoded>
+            <category>general</category>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://ecom-co.github.io/document/vi/blog/hello</link>
+            <guid>https://ecom-co.github.io/document/vi/blog/hello</guid>
+            <pubDate>Sun, 31 Aug 2025 14:53:34 GMT</pubDate>
+            <description><![CDATA[Welcome to my blog! This is your first blog post.]]></description>
+            <content:encoded><![CDATA[<p>Welcome to my blog! This is your first blog post.</p>]]></content:encoded>
+            <category>general</category>
+        </item>
+    </channel>
+</rss>

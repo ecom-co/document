@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-microservices/communication/websockets" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">WebSockets | NestJS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ecom-co.github.io/document/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ecom-co.github.io/document/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ecom-co.github.io/document/docs/microservices/communication/websockets"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="vi"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="WebSockets | NestJS Documentation"><meta data-rh="true" name="description" content="WebSockets giống như &quot;điện thoại&quot; giữa client và server - kết nối liên tục, có thể giao tiếp hai chiều real-time."><meta data-rh="true" property="og:description" content="WebSockets giống như &quot;điện thoại&quot; giữa client và server - kết nối liên tục, có thể giao tiếp hai chiều real-time."><link data-rh="true" rel="icon" href="/document/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ecom-co.github.io/document/docs/microservices/communication/websockets"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/websockets" hreflang="en"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/vi/docs/microservices/communication/websockets" hreflang="vi"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/websockets" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"WebSockets","item":"https://ecom-co.github.io/document/docs/microservices/communication/websockets"}]}</script><link rel="alternate" type="application/rss+xml" href="/document/blog/rss.xml" title="NestJS Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/document/blog/atom.xml" title="NestJS Documentation Atom Feed"><link rel="stylesheet" href="/document/assets/css/styles.82925b1f.css">
+<script src="/document/assets/js/runtime~main.897e674a.js" defer="defer"></script>
+<script src="/document/assets/js/main.7c416943.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/document/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/document/"><div class="navbar__logo"><img src="/document/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/document/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">NestJS</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/document/docs/">Docs</a><a class="navbar__item navbar__link" href="/document/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div><a href="https://github.com/ecom-co/document" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/document/docs/microservices/communication/websockets" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/document/vi/docs/microservices/communication/websockets" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="vi">Tiếng Việt</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/docs/">NestJS là gì?</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/docs/installation">Cài đặt NestJS</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/overview/modules">Overview</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/http-exception/http-methods">HTTP &amp; Exception Handling</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/document/docs/microservices/microservices-overview">Microservices &amp; Communication</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-overview">Microservices Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/document/docs/microservices/communication/communication-overview">Communication Protocols</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/communication/communication-overview">Communication Overview</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/communication/grpc-protocol">gRPC Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/communication/rest-protocol">REST Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/communication/message-queues">Message Queues</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/document/docs/microservices/communication/websockets">WebSockets</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/communication/event-driven">Event-Driven Communication</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/service-discovery">Service Discovery</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/load-balancing">Load Balancing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-patterns">Microservices Patterns</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-testing">Microservices Testing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-deployment">Microservices Deployment</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/ecom-co/ecom-co-overview">Ecom-co Libraries</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/document/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Microservices &amp; Communication</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Communication Protocols</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">WebSockets</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>WebSockets</h1></header>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Khái niệm cơ bản</div><div class="admonitionContent_BuS1"><p>WebSockets giống như &quot;điện thoại&quot; giữa client và server - kết nối liên tục, có thể giao tiếp hai chiều real-time.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="websockets-là-gì">WebSockets là gì?<a href="#websockets-là-gì" class="hash-link" aria-label="Direct link to WebSockets là gì?" title="Direct link to WebSockets là gì?">​</a></h2>
+<p><strong>Lý thuyết cơ bản:</strong>
+WebSockets là một protocol cho real-time, bidirectional communication giữa client và server. Nó thiết lập một persistent connection cho phép data flow hai chiều mà không cần HTTP request/response cycle.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Persistent Connection</strong>: Kết nối liên tục giữa client và server</li>
+<li><strong>Bidirectional</strong>: Giao tiếp hai chiều real-time</li>
+<li><strong>Low Latency</strong>: Latency thấp do không cần HTTP overhead</li>
+<li><strong>Full-duplex</strong>: Có thể gửi và nhận đồng thời</li>
+<li><strong>Protocol Upgrade</strong>: Upgrade từ HTTP connection</li>
+<li><strong>Real-time</strong>: Real-time data transmission</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Handshake</strong>: Client gửi HTTP upgrade request</li>
+<li><strong>Connection Upgrade</strong>: Server upgrade connection thành WebSocket</li>
+<li><strong>Persistent Connection</strong>: Thiết lập persistent connection</li>
+<li><strong>Data Exchange</strong>: Giao tiếp hai chiều real-time</li>
+<li><strong>Connection Management</strong>: Quản lý connection lifecycle</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Connection State</strong>: Disconnected → Handshaking → Connected → Active → Idle → Disconnected</li>
+<li><strong>Data State</strong>: No Data → Sending → Receiving → Processing → Responding</li>
+<li><strong>Protocol State</strong>: HTTP → Upgrading → WebSocket → Active → Closing</li>
+</ul>
+<p><strong>Điểm mạnh (Strengths):</strong></p>
+<ul>
+<li><strong>Real-time Communication</strong>: Giao tiếp real-time hai chiều</li>
+<li><strong>Low Latency</strong>: Latency thấp hơn HTTP</li>
+<li><strong>Persistent Connection</strong>: Không cần reconnect mỗi request</li>
+<li><strong>Bidirectional</strong>: Có thể gửi và nhận đồng thời</li>
+<li><strong>Efficient</strong>: Ít overhead hơn HTTP</li>
+<li><strong>Browser Support</strong>: Hỗ trợ tốt trong browsers</li>
+<li><strong>Standard Protocol</strong>: Web standard protocol</li>
+<li><strong>Event-driven</strong>: Event-driven communication</li>
+</ul>
+<p><strong>Điểm yếu (Weaknesses):</strong></p>
+<ul>
+<li><strong>Connection Management</strong>: Phức tạp quản lý connections</li>
+<li><strong>Stateful</strong>: Stateful connections khó scale</li>
+<li><strong>Firewall Issues</strong>: Có thể bị firewall block</li>
+<li><strong>Proxy Problems</strong>: Reverse proxies có thể gây vấn đề</li>
+<li><strong>Memory Usage</strong>: Tốn memory cho persistent connections</li>
+<li><strong>Load Balancing</strong>: Khó implement load balancing</li>
+<li><strong>Error Handling</strong>: Complex error handling</li>
+<li><strong>Testing Complexity</strong>: Khó test WebSocket connections</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-websockets">Khi nào nên dùng và khi nào không nên dùng WebSockets<a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-websockets" class="hash-link" aria-label="Direct link to Khi nào nên dùng và khi nào không nên dùng WebSockets" title="Direct link to Khi nào nên dùng và khi nào không nên dùng WebSockets">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-websockets"><strong>Khi nào NÊN dùng WebSockets:</strong><a href="#khi-nào-nên-dùng-websockets" class="hash-link" aria-label="Direct link to khi-nào-nên-dùng-websockets" title="Direct link to khi-nào-nên-dùng-websockets">​</a></h3>
+<p><strong>1. Real-time Applications:</strong></p>
+<ul>
+<li><strong>Chat Applications</strong>: Real-time messaging, group chat</li>
+<li><strong>Live Streaming</strong>: Video streaming, audio streaming</li>
+<li><strong>Gaming</strong>: Real-time multiplayer games</li>
+<li><strong>Live Dashboards</strong>: Real-time monitoring, analytics</li>
+</ul>
+<p><strong>2. Bidirectional Communication:</strong></p>
+<ul>
+<li><strong>Collaborative Tools</strong>: Real-time collaboration</li>
+<li><strong>Live Updates</strong>: Real-time data updates</li>
+<li><strong>Notifications</strong>: Push notifications, alerts</li>
+<li><strong>Interactive Features</strong>: Real-time user interactions</li>
+</ul>
+<p><strong>3. Low Latency Requirements:</strong></p>
+<ul>
+<li><strong>Financial Trading</strong>: Real-time trading data</li>
+<li><strong>IoT Applications</strong>: Device communication, sensor data</li>
+<li><strong>Real-time Analytics</strong>: Live data processing</li>
+<li><strong>Performance Critical</strong>: Applications cần performance cao</li>
+</ul>
+<p><strong>4. Persistent Connections:</strong></p>
+<ul>
+<li><strong>Long-running Sessions</strong>: User sessions dài</li>
+<li><strong>Continuous Data Flow</strong>: Continuous data streaming</li>
+<li><strong>Connection Reuse</strong>: Reuse connections</li>
+<li><strong>Stateful Applications</strong>: Applications cần maintain state</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-không-nên-dùng-websockets"><strong>Khi nào KHÔNG NÊN dùng WebSockets:</strong><a href="#khi-nào-không-nên-dùng-websockets" class="hash-link" aria-label="Direct link to khi-nào-không-nên-dùng-websockets" title="Direct link to khi-nào-không-nên-dùng-websockets">​</a></h3>
+<p><strong>1. Simple Request-Response:</strong></p>
+<ul>
+<li><strong>CRUD Operations</strong>: Basic CRUD operations</li>
+<li><strong>REST APIs</strong>: Simple API calls</li>
+<li><strong>One-time Requests</strong>: One-time data requests</li>
+<li><strong>Stateless Operations</strong>: Stateless operations</li>
+</ul>
+<p><strong>2. High Scalability Requirements:</strong></p>
+<ul>
+<li><strong>Massive Scale</strong>: Systems cần scale rất lớn</li>
+<li><strong>Stateless Architecture</strong>: Stateless microservices</li>
+<li><strong>Load Balancing</strong>: Cần load balancing đơn giản</li>
+<li><strong>Horizontal Scaling</strong>: Horizontal scaling requirements</li>
+</ul>
+<p><strong>3. Firewall Restrictions:</strong></p>
+<ul>
+<li><strong>Corporate Networks</strong>: Corporate firewall restrictions</li>
+<li><strong>Proxy Environments</strong>: Reverse proxy environments</li>
+<li><strong>Security Policies</strong>: Strict security policies</li>
+<li><strong>Network Limitations</strong>: Network infrastructure limitations</li>
+</ul>
+<p><strong>4. Resource Constraints:</strong></p>
+<ul>
+<li><strong>Memory Limitations</strong>: Limited memory resources</li>
+<li><strong>Connection Limits</strong>: Limited connection capacity</li>
+<li><strong>Server Resources</strong>: Limited server resources</li>
+<li><strong>Cost Constraints</strong>: High resource cost requirements</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cách-áp-dụng-websockets-hiệu-quả">Cách áp dụng WebSockets hiệu quả<a href="#cách-áp-dụng-websockets-hiệu-quả" class="hash-link" aria-label="Direct link to Cách áp dụng WebSockets hiệu quả" title="Direct link to Cách áp dụng WebSockets hiệu quả">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-chiến-lược-áp-dụng-adoption-strategy"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="hash-link" aria-label="Direct link to 1-chiến-lược-áp-dụng-adoption-strategy" title="Direct link to 1-chiến-lược-áp-dụng-adoption-strategy">​</a></h3>
+<p><strong>Phase 1: Assessment &amp; Planning</strong></p>
+<ul>
+<li><strong>Use Case Analysis</strong>: Xác định use cases phù hợp</li>
+<li><strong>Connection Requirements</strong>: Analyze connection requirements</li>
+<li><strong>Scalability Planning</strong>: Plan for scalability</li>
+<li><strong>Infrastructure Review</strong>: Review infrastructure capabilities</li>
+</ul>
+<p><strong>Phase 2: Implementation</strong></p>
+<ul>
+<li><strong>WebSocket Server</strong>: Implement WebSocket server</li>
+<li><strong>Client Implementation</strong>: Implement WebSocket client</li>
+<li><strong>Connection Management</strong>: Implement connection management</li>
+<li><strong>Error Handling</strong>: Implement error handling</li>
+</ul>
+<p><strong>Phase 3: Testing &amp; Deployment</strong></p>
+<ul>
+<li><strong>Connection Testing</strong>: Test WebSocket connections</li>
+<li><strong>Load Testing</strong>: Test connection capacity</li>
+<li><strong>Error Scenarios</strong>: Test error scenarios</li>
+<li><strong>Production Deployment</strong>: Deploy to production</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-best-practices-khi-áp-dụng"><strong>2. Best Practices khi áp dụng:</strong><a href="#2-best-practices-khi-áp-dụng" class="hash-link" aria-label="Direct link to 2-best-practices-khi-áp-dụng" title="Direct link to 2-best-practices-khi-áp-dụng">​</a></h3>
+<p><strong>Connection Management:</strong></p>
+<ul>
+<li><strong>Connection Pooling</strong>: Implement connection pooling</li>
+<li><strong>Heartbeat Mechanism</strong>: Implement heartbeat mechanism</li>
+<li><strong>Connection Limits</strong>: Set appropriate connection limits</li>
+<li><strong>Resource Cleanup</strong>: Proper resource cleanup</li>
+</ul>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li><strong>Reconnection Logic</strong>: Implement reconnection logic</li>
+<li><strong>Error Classification</strong>: Classify different error types</li>
+<li><strong>Fallback Mechanisms</strong>: Implement fallback mechanisms</li>
+<li><strong>Monitoring</strong>: Monitor connection health</li>
+</ul>
+<p><strong>Performance Optimization:</strong></p>
+<ul>
+<li><strong>Message Batching</strong>: Batch messages when possible</li>
+<li><strong>Compression</strong>: Use message compression</li>
+<li><strong>Connection Reuse</strong>: Reuse connections</li>
+<li><strong>Load Distribution</strong>: Distribute load properly</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-common-pitfalls-và-cách-tránh"><strong>3. Common Pitfalls và cách tránh:</strong><a href="#3-common-pitfalls-và-cách-tránh" class="hash-link" aria-label="Direct link to 3-common-pitfalls-và-cách-tránh" title="Direct link to 3-common-pitfalls-và-cách-tránh">​</a></h3>
+<p><strong>Connection Issues:</strong></p>
+<ul>
+<li><strong>❌ No Connection Limits</strong>: Set appropriate connection limits</li>
+<li><strong>❌ No Heartbeat</strong>: Implement heartbeat mechanism</li>
+<li><strong>❌ No Reconnection</strong>: Implement reconnection logic</li>
+<li><strong>❌ No Error Handling</strong>: Implement proper error handling</li>
+</ul>
+<p><strong>Scalability Issues:</strong></p>
+<ul>
+<li><strong>❌ No Load Balancing</strong>: Plan for load balancing</li>
+<li><strong>❌ No Connection Pooling</strong>: Implement connection pooling</li>
+<li><strong>❌ No Resource Management</strong>: Manage resources properly</li>
+<li><strong>❌ No Monitoring</strong>: Monitor connection health</li>
+</ul>
+<p><strong>✅ Cách tránh:</strong></p>
+<ul>
+<li><strong>Plan for Scale</strong>: Plan scaling từ đầu</li>
+<li><strong>Implement Monitoring</strong>: Monitor tất cả aspects</li>
+<li><strong>Test Thoroughly</strong>: Test đầy đủ các scenarios</li>
+<li><strong>Handle Errors</strong>: Handle errors gracefully</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="kiến-trúc-websockets">Kiến trúc WebSockets<a href="#kiến-trúc-websockets" class="hash-link" aria-label="Direct link to Kiến trúc WebSockets" title="Direct link to Kiến trúc WebSockets">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-connection-flow---lý-thuyết-và-quy-trình"><strong>1. Connection Flow - Lý thuyết và Quy trình</strong><a href="#1-connection-flow---lý-thuyết-và-quy-trình" class="hash-link" aria-label="Direct link to 1-connection-flow---lý-thuyết-và-quy-trình" title="Direct link to 1-connection-flow---lý-thuyết-và-quy-trình">​</a></h3>
+<p><strong>Lý thuyết về Connection Flow:</strong>
+WebSocket connection flow bắt đầu với HTTP handshake, sau đó upgrade thành WebSocket connection. Connection này persistent và cho phép bidirectional communication.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>HTTP Handshake</strong>: Upgrade request từ HTTP</li>
+<li><strong>Protocol Upgrade</strong>: Upgrade từ HTTP sang WebSocket</li>
+<li><strong>Persistent Connection</strong>: Maintain connection</li>
+<li><strong>Bidirectional Communication</strong>: Two-way communication</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>HTTP Request</strong>: Client gửi HTTP upgrade request</li>
+<li><strong>Server Response</strong>: Server respond với upgrade headers</li>
+<li><strong>Connection Upgrade</strong>: Connection được upgrade</li>
+<li><strong>WebSocket Protocol</strong>: Sử dụng WebSocket protocol</li>
+<li><strong>Data Exchange</strong>: Giao tiếp hai chiều</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Protocol State</strong>: HTTP → Upgrading → WebSocket → Active</li>
+<li><strong>Connection State</strong>: Disconnected → Handshaking → Connected → Active</li>
+<li><strong>Data State</strong>: No Data → Handshake → Connected → Exchanging</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Standard Protocol</strong>: Sử dụng standard protocol</li>
+<li><strong>Efficient</strong>: Ít overhead hơn HTTP</li>
+<li><strong>Real-time</strong>: Real-time communication</li>
+<li><strong>Bidirectional</strong>: Two-way communication</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complex Setup</strong>: Setup phức tạp</li>
+<li><strong>Stateful</strong>: Stateful connections</li>
+<li><strong>Resource Usage</strong>: Tốn resources</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-connection-flow">**2. <strong>Connection Flow</strong><a href="#2-connection-flow" class="hash-link" aria-label="Direct link to 2-connection-flow" title="Direct link to 2-connection-flow">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-message-flow---lý-thuyết-và-thực-hành"><strong>3. Message Flow - Lý thuyết và Thực hành</strong><a href="#3-message-flow---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 3-message-flow---lý-thuyết-và-thực-hành" title="Direct link to 3-message-flow---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Message Flow:</strong>
+WebSocket message flow cho phép real-time, bidirectional data exchange. Messages được gửi và nhận qua persistent connection mà không cần HTTP request/response cycle.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Real-time</strong>: Immediate message delivery</li>
+<li><strong>Bidirectional</strong>: Send và receive đồng thời</li>
+<li><strong>Framed</strong>: Messages được frame theo WebSocket spec</li>
+<li><strong>Efficient</strong>: Ít overhead hơn HTTP</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Message Creation</strong>: Create message content</li>
+<li><strong>Message Framing</strong>: Frame message theo WebSocket spec</li>
+<li><strong>Message Transmission</strong>: Transmit qua connection</li>
+<li><strong>Message Reception</strong>: Receive và parse message</li>
+<li><strong>Message Processing</strong>: Process message content</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Message State</strong>: Created → Framed → Transmitted → Received → Parsed → Processed</li>
+<li><strong>Connection State</strong>: Idle → Sending → Receiving → Processing → Idle</li>
+<li><strong>Data State</strong>: Raw → Formatted → Transmitted → Received → Processed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Real-time</strong>: Real-time message delivery</li>
+<li><strong>Efficient</strong>: Efficient message transmission</li>
+<li><strong>Bidirectional</strong>: Two-way message flow</li>
+<li><strong>Low Latency</strong>: Low latency communication</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Message handling phức tạp</li>
+<li><strong>State Management</strong>: Cần quản lý message state</li>
+<li><strong>Error Handling</strong>: Complex error handling</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-message-flow">**4. <strong>Message Flow</strong><a href="#4-message-flow" class="hash-link" aria-label="Direct link to 4-message-flow" title="Direct link to 4-message-flow">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="websocket-implementation-trong-nestjs">WebSocket Implementation trong NestJS<a href="#websocket-implementation-trong-nestjs" class="hash-link" aria-label="Direct link to WebSocket Implementation trong NestJS" title="Direct link to WebSocket Implementation trong NestJS">​</a></h2>
+<p><strong>Lý thuyết về WebSockets trong NestJS:</strong>
+NestJS cung cấp built-in support cho WebSockets thông qua <code>@nestjs/websockets</code> package. Nó sử dụng Socket.io hoặc native WebSockets để implement real-time communication.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Gateway Support</strong>: WebSocket gateways</li>
+<li><strong>Event Handling</strong>: Event-based message handling</li>
+<li><strong>Room Management</strong>: Room-based communication</li>
+<li><strong>Authentication</strong>: WebSocket authentication</li>
+<li><strong>Guards</strong>: WebSocket guards</li>
+<li><strong>Interceptors</strong>: WebSocket interceptors</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Gateway Definition</strong>: Định nghĩa WebSocket gateway</li>
+<li><strong>Event Handlers</strong>: Implement event handlers</li>
+<li><strong>Connection Management</strong>: Manage WebSocket connections</li>
+<li><strong>Message Routing</strong>: Route messages đến handlers</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Gateway State</strong>: Unregistered → Registered → Active → Handling Connections</li>
+<li><strong>Connection State</strong>: Disconnected → Connecting → Connected → Active</li>
+<li><strong>Event State</strong>: Received → Routed → Handled → Responded</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Native Integration</strong>: Tích hợp tốt với NestJS</li>
+<li><strong>Event-based</strong>: Event-based architecture</li>
+<li><strong>Room Support</strong>: Room-based communication</li>
+<li><strong>Authentication</strong>: Built-in authentication</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Learning Curve</strong>: Cần hiểu WebSocket concepts</li>
+<li><strong>Complexity</strong>: WebSocket complexity</li>
+<li><strong>State Management</strong>: Cần quản lý connection state</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-websocket-gateway---lý-thuyết-và-thực-hành"><strong>1. WebSocket Gateway - Lý thuyết và Thực hành</strong><a href="#1-websocket-gateway---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 1-websocket-gateway---lý-thuyết-và-thực-hành" title="Direct link to 1-websocket-gateway---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về WebSocket Gateway:</strong>
+WebSocket Gateway trong NestJS xử lý WebSocket connections và messages. Nó sử dụng decorators để define event handlers và manage connections.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Gateway Decorator</strong>: Sử dụng <code>@WebSocketGateway()</code></li>
+<li><strong>Event Handlers</strong>: Sử dụng <code>@SubscribeMessage()</code></li>
+<li><strong>Connection Events</strong>: Handle connection events</li>
+<li><strong>Message Handling</strong>: Handle incoming messages</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Gateway Registration</strong>: Register gateway với NestJS</li>
+<li><strong>Connection Handling</strong>: Handle WebSocket connections</li>
+<li><strong>Event Routing</strong>: Route events đến handlers</li>
+<li><strong>Message Processing</strong>: Process incoming messages</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Gateway State</strong>: Unregistered → Registered → Active → Handling</li>
+<li><strong>Connection State</strong>: Disconnected → Connected → Active → Processing</li>
+<li><strong>Event State</strong>: Received → Routed → Handled → Responded</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Clean Architecture</strong>: Separation of concerns</li>
+<li><strong>Event-based</strong>: Event-based message handling</li>
+<li><strong>Type Safety</strong>: TypeScript support</li>
+<li><strong>Easy Testing</strong>: Dễ dàng test</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: WebSocket complexity</li>
+<li><strong>State Management</strong>: Connection state management</li>
+<li><strong>Error Handling</strong>: Complex error handling</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-websocket-gateway-architecture">**2. <strong>WebSocket Gateway Architecture</strong><a href="#2-websocket-gateway-architecture" class="hash-link" aria-label="Direct link to 2-websocket-gateway-architecture" title="Direct link to 2-websocket-gateway-architecture">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="websocket-patterns">WebSocket Patterns<a href="#websocket-patterns" class="hash-link" aria-label="Direct link to WebSocket Patterns" title="Direct link to WebSocket Patterns">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-room-based-communication---lý-thuyết-và-thực-hành"><strong>1. Room-based Communication - Lý thuyết và Thực hành</strong><a href="#1-room-based-communication---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 1-room-based-communication---lý-thuyết-và-thực-hành" title="Direct link to 1-room-based-communication---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Room-based Communication:</strong>
+Room-based communication cho phép group users vào rooms và send messages đến specific rooms. Pattern này phù hợp cho chat applications, multiplayer games, và collaborative tools.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Room Management</strong>: Create và manage rooms</li>
+<li><strong>User Joining</strong>: Users join và leave rooms</li>
+<li><strong>Room Broadcasting</strong>: Send messages đến room members</li>
+<li><strong>Room Isolation</strong>: Messages chỉ đến room members</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Room Creation</strong>: Create room với unique ID</li>
+<li><strong>User Joining</strong>: Users join room</li>
+<li><strong>Message Broadcasting</strong>: Send messages đến room</li>
+<li><strong>Room Management</strong>: Manage room lifecycle</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Room State</strong>: Created → Active → Inactive → Deleted</li>
+<li><strong>User State</strong>: Not Joined → Joined → Active → Left</li>
+<li><strong>Message State</strong>: Created → Broadcasted → Received → Processed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Group Communication</strong>: Effective group communication</li>
+<li><strong>Message Isolation</strong>: Messages chỉ đến intended recipients</li>
+<li><strong>Scalability</strong>: Scale rooms independently</li>
+<li><strong>User Management</strong>: Easy user management</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Room management complexity</li>
+<li><strong>Resource Usage</strong>: Tốn resources cho rooms</li>
+<li><strong>State Management</strong>: Cần quản lý room state</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-room-based-communication">**3. <strong>Room-based Communication</strong><a href="#3-room-based-communication" class="hash-link" aria-label="Direct link to 3-room-based-communication" title="Direct link to 3-room-based-communication">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-private-messaging---lý-thuyết-và-thực-hành"><strong>2. Private Messaging - Lý thuyết và Thực hành</strong><a href="#2-private-messaging---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 2-private-messaging---lý-thuyết-và-thực-hành" title="Direct link to 2-private-messaging---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Private Messaging:</strong>
+Private messaging cho phép users gửi messages riêng tư cho nhau. Pattern này sử dụng direct connections hoặc private channels để đảm bảo privacy.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Direct Connection</strong>: Direct connection giữa users</li>
+<li><strong>Private Channels</strong>: Private channels cho messaging</li>
+<li><strong>Authentication</strong>: User authentication</li>
+<li><strong>Message Encryption</strong>: Message encryption cho privacy</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>User Authentication</strong>: Authenticate users</li>
+<li><strong>Private Channel</strong>: Create private channel</li>
+<li><strong>Message Sending</strong>: Send private message</li>
+<li><strong>Message Delivery</strong>: Deliver message đến recipient</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Channel State</strong>: Created → Active → Inactive → Closed</li>
+<li><strong>Message State</strong>: Created → Encrypted → Transmitted → Decrypted → Delivered</li>
+<li><strong>User State</strong>: Unauthenticated → Authenticated → Connected → Messaging</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Privacy</strong>: Ensure message privacy</li>
+<li><strong>Direct Communication</strong>: Direct user communication</li>
+<li><strong>Security</strong>: Secure messaging</li>
+<li><strong>User Control</strong>: User control over messages</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Security complexity</li>
+<li><strong>Resource Usage</strong>: Tốn resources cho private channels</li>
+<li><strong>Scalability</strong>: Khó scale private messaging</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-private-messaging">**4. <strong>Private Messaging</strong><a href="#4-private-messaging" class="hash-link" aria-label="Direct link to 4-private-messaging" title="Direct link to 4-private-messaging">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-broadcasting---lý-thuyết-và-thực-hành"><strong>3. Broadcasting - Lý thuyết và Thực hành</strong><a href="#3-broadcasting---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 3-broadcasting---lý-thuyết-và-thực-hành" title="Direct link to 3-broadcasting---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Broadcasting:</strong>
+Broadcasting pattern gửi messages đến tất cả connected clients. Pattern này phù hợp cho notifications, announcements, và system-wide updates.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Global Broadcasting</strong>: Send messages đến tất cả clients</li>
+<li><strong>Selective Broadcasting</strong>: Broadcast đến specific groups</li>
+<li><strong>Efficient Delivery</strong>: Efficient message delivery</li>
+<li><strong>Load Distribution</strong>: Distribute load properly</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Message Creation</strong>: Create broadcast message</li>
+<li><strong>Client Discovery</strong>: Discover connected clients</li>
+<li><strong>Message Distribution</strong>: Distribute message đến clients</li>
+<li><strong>Delivery Confirmation</strong>: Confirm message delivery</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Message State</strong>: Created → Distributed → Delivered → Confirmed</li>
+<li><strong>Client State</strong>: Connected → Receiving → Processing → Responding</li>
+<li><strong>Broadcast State</strong>: Initiated → Distributing → Completed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Global Reach</strong>: Reach tất cả clients</li>
+<li><strong>Efficient</strong>: Efficient message distribution</li>
+<li><strong>Real-time</strong>: Real-time updates</li>
+<li><strong>Scalability</strong>: Scale broadcasting</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Resource Usage</strong>: Tốn resources cho broadcasting</li>
+<li><strong>Message Duplication</strong>: Messages đến tất cả clients</li>
+<li><strong>Load Impact</strong>: Có thể impact system load</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-broadcasting-pattern">**5. <strong>Broadcasting Pattern</strong><a href="#5-broadcasting-pattern" class="hash-link" aria-label="Direct link to 5-broadcasting-pattern" title="Direct link to 5-broadcasting-pattern">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-connection-management---lý-thuyết-và-nguyên-tắc"><strong>1. Connection Management - Lý thuyết và Nguyên tắc</strong><a href="#1-connection-management---lý-thuyết-và-nguyên-tắc" class="hash-link" aria-label="Direct link to 1-connection-management---lý-thuyết-và-nguyên-tắc" title="Direct link to 1-connection-management---lý-thuyết-và-nguyên-tắc">​</a></h3>
+<p><strong>Nguyên tắc cơ bản:</strong></p>
+<ul>
+<li><strong>Connection Limits</strong>: Set appropriate connection limits</li>
+<li><strong>Heartbeat Mechanism</strong>: Implement heartbeat mechanism</li>
+<li><strong>Resource Cleanup</strong>: Proper resource cleanup</li>
+<li><strong>Connection Pooling</strong>: Use connection pooling</li>
+</ul>
+<p><strong>Quy tắc lựa chọn:</strong></p>
+<ol>
+<li><strong>Connection Capacity</strong>: Plan connection capacity</li>
+<li><strong>Resource Management</strong>: Manage resources properly</li>
+<li><strong>Health Monitoring</strong>: Monitor connection health</li>
+<li><strong>Cleanup Strategy</strong>: Plan cleanup strategy</li>
+</ol>
+<p><strong>Trade-offs cần cân nhắc:</strong></p>
+<ul>
+<li><strong>Capacity vs Resources</strong>: Balance capacity và resources</li>
+<li><strong>Performance vs Reliability</strong>: Balance performance và reliability</li>
+<li><strong>Complexity vs Functionality</strong>: Balance complexity và functionality</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-error-handling---lý-thuyết-và-chiến-lược"><strong>2. Error Handling - Lý thuyết và Chiến lược</strong><a href="#2-error-handling---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Direct link to 2-error-handling---lý-thuyết-và-chiến-lược" title="Direct link to 2-error-handling---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý xử lý lỗi:</strong></p>
+<ul>
+<li><strong>Error Classification</strong>: Classify different error types</li>
+<li><strong>Reconnection Logic</strong>: Implement reconnection logic</li>
+<li><strong>Fallback Mechanisms</strong>: Implement fallback mechanisms</li>
+<li><strong>Error Monitoring</strong>: Monitor error patterns</li>
+</ul>
+<p><strong>Chiến lược xử lý lỗi:</strong></p>
+<ul>
+<li><strong>Connection Errors</strong>: Handle connection errors</li>
+<li><strong>Message Errors</strong>: Handle message errors</li>
+<li><strong>System Errors</strong>: Handle system errors</li>
+<li><strong>Recovery Actions</strong>: Take recovery actions</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Classify Errors</strong>: Classify errors properly</li>
+<li><strong>Implement Recovery</strong>: Implement recovery mechanisms</li>
+<li><strong>Monitor Errors</strong>: Monitor error patterns</li>
+<li><strong>Handle Gracefully</strong>: Handle errors gracefully</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-performance-optimization---lý-thuyết-và-chiến-lược"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Direct link to 3-performance-optimization---lý-thuyết-và-chiến-lược" title="Direct link to 3-performance-optimization---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý tối ưu performance:</strong></p>
+<ul>
+<li><strong>Message Batching</strong>: Batch messages when possible</li>
+<li><strong>Connection Reuse</strong>: Reuse connections</li>
+<li><strong>Load Distribution</strong>: Distribute load properly</li>
+<li><strong>Resource Optimization</strong>: Optimize resource usage</li>
+</ul>
+<p><strong>Chiến lược tối ưu:</strong></p>
+<ul>
+<li><strong>Batching Strategy</strong>: Plan batching strategy</li>
+<li><strong>Connection Strategy</strong>: Plan connection strategy</li>
+<li><strong>Load Strategy</strong>: Plan load distribution</li>
+<li><strong>Resource Strategy</strong>: Plan resource optimization</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Batch Messages</strong>: Batch messages when possible</li>
+<li><strong>Reuse Connections</strong>: Reuse connections</li>
+<li><strong>Distribute Load</strong>: Distribute load properly</li>
+<li><strong>Optimize Resources</strong>: Optimize resource usage</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="so-sánh-với-các-protocol-khác">So sánh với các Protocol khác<a href="#so-sánh-với-các-protocol-khác" class="hash-link" aria-label="Direct link to So sánh với các Protocol khác" title="Direct link to So sánh với các Protocol khác">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-websockets-vs-rest"><strong>1. WebSockets vs REST:</strong><a href="#1-websockets-vs-rest" class="hash-link" aria-label="Direct link to 1-websockets-vs-rest" title="Direct link to 1-websockets-vs-rest">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Persistent connection, bidirectional</li>
+<li><strong>REST</strong>: Request-response, stateless</li>
+<li><strong>Kết quả</strong>: WebSockets cho real-time, REST cho simple APIs</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Low latency, high throughput</li>
+<li><strong>REST</strong>: Higher latency, lower overhead</li>
+<li><strong>Kết quả</strong>: WebSockets tốt hơn cho real-time</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Real-time apps, chat, gaming</li>
+<li><strong>REST</strong>: CRUD operations, simple APIs</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-websockets-vs-grpc"><strong>2. WebSockets vs gRPC:</strong><a href="#2-websockets-vs-grpc" class="hash-link" aria-label="Direct link to 2-websockets-vs-grpc" title="Direct link to 2-websockets-vs-grpc">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Browser-based, bidirectional</li>
+<li><strong>gRPC</strong>: Server-to-server, high performance</li>
+<li><strong>Kết quả</strong>: WebSockets cho browsers, gRPC cho servers</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Good browser performance</li>
+<li><strong>gRPC</strong>: High server performance</li>
+<li><strong>Kết quả</strong>: gRPC tốt hơn cho server communication</li>
+</ul>
+<p><strong>Browser Support:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Full browser support</li>
+<li><strong>gRPC</strong>: Limited browser support</li>
+<li><strong>Kết quả</strong>: WebSockets tốt hơn cho browser apps</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-websockets-vs-message-queues"><strong>3. WebSockets vs Message Queues:</strong><a href="#3-websockets-vs-message-queues" class="hash-link" aria-label="Direct link to 3-websockets-vs-message-queues" title="Direct link to 3-websockets-vs-message-queues">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: Real-time, immediate</li>
+<li><strong>Message Queues</strong>: Asynchronous, queued</li>
+<li><strong>Kết quả</strong>: WebSockets cho real-time, MQ cho async</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>WebSockets</strong>: User interactions, real-time updates</li>
+<li><strong>Message Queues</strong>: Background jobs, event processing</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<hr>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Lời khuyên tổng kết - Lý thuyết và Thực hành</div><div class="admonitionContent_BuS1"><p><strong>Nguyên tắc cơ bản:</strong></p><ul>
+<li><strong>Protocol Selection</strong>: WebSockets phù hợp cho real-time, bidirectional communication</li>
+<li><strong>Performance vs Complexity</strong>: WebSockets có performance cao nhưng complexity cao</li>
+<li><strong>Real-time vs Stateless</strong>: WebSockets real-time, REST stateless</li>
+</ul><p><strong>Quy tắc thực hành:</strong></p><ol>
+<li><strong>WebSockets</strong>: Cho real-time apps, chat, gaming, live updates</li>
+<li><strong>REST</strong>: Cho simple APIs, CRUD operations</li>
+<li><strong>gRPC</strong>: Cho high-performance server communication</li>
+</ol><p><strong>Lý do tại sao:</strong></p><ul>
+<li><strong>WebSockets</strong>: Real-time, bidirectional, low latency</li>
+<li><strong>REST</strong>: Simple, universal, stateless</li>
+<li><strong>gRPC</strong>: High performance, strong typing, streaming</li>
+</ul><p><strong>Cách xử lý biến đổi:</strong></p><ul>
+<li><strong>State Management</strong>: WebSockets stateful, REST stateless, gRPC stateful</li>
+<li><strong>Error Handling</strong>: WebSockets reconnection, REST status codes, gRPC error codes</li>
+<li><strong>Performance Optimization</strong>: WebSockets connection reuse, REST caching, gRPC connection pooling</li>
+</ul></div></div>
+<p><strong>Bài tiếp theo:</strong> <a href="/document/docs/microservices/communication/event-driven">Event-Driven Communication</a></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/ecom-co/document/tree/main/docs/microservices/communication/websockets.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/document/docs/microservices/communication/message-queues"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Message Queues</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/document/docs/microservices/communication/event-driven"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Event-Driven Communication</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#websockets-là-gì" class="table-of-contents__link toc-highlight">WebSockets là gì?</a></li><li><a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-websockets" class="table-of-contents__link toc-highlight">Khi nào nên dùng và khi nào không nên dùng WebSockets</a><ul><li><a href="#khi-nào-nên-dùng-websockets" class="table-of-contents__link toc-highlight"><strong>Khi nào NÊN dùng WebSockets:</strong></a></li><li><a href="#khi-nào-không-nên-dùng-websockets" class="table-of-contents__link toc-highlight"><strong>Khi nào KHÔNG NÊN dùng WebSockets:</strong></a></li></ul></li><li><a href="#cách-áp-dụng-websockets-hiệu-quả" class="table-of-contents__link toc-highlight">Cách áp dụng WebSockets hiệu quả</a><ul><li><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="table-of-contents__link toc-highlight"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong></a></li><li><a href="#2-best-practices-khi-áp-dụng" class="table-of-contents__link toc-highlight"><strong>2. Best Practices khi áp dụng:</strong></a></li><li><a href="#3-common-pitfalls-và-cách-tránh" class="table-of-contents__link toc-highlight"><strong>3. Common Pitfalls và cách tránh:</strong></a></li></ul></li><li><a href="#kiến-trúc-websockets" class="table-of-contents__link toc-highlight">Kiến trúc WebSockets</a><ul><li><a href="#1-connection-flow---lý-thuyết-và-quy-trình" class="table-of-contents__link toc-highlight"><strong>1. Connection Flow - Lý thuyết và Quy trình</strong></a></li><li><a href="#2-connection-flow" class="table-of-contents__link toc-highlight">**2. <strong>Connection Flow</strong></a></li><li><a href="#3-message-flow---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Message Flow - Lý thuyết và Thực hành</strong></a></li><li><a href="#4-message-flow" class="table-of-contents__link toc-highlight">**4. <strong>Message Flow</strong></a></li></ul></li><li><a href="#websocket-implementation-trong-nestjs" class="table-of-contents__link toc-highlight">WebSocket Implementation trong NestJS</a><ul><li><a href="#1-websocket-gateway---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. WebSocket Gateway - Lý thuyết và Thực hành</strong></a></li><li><a href="#2-websocket-gateway-architecture" class="table-of-contents__link toc-highlight">**2. <strong>WebSocket Gateway Architecture</strong></a></li></ul></li><li><a href="#websocket-patterns" class="table-of-contents__link toc-highlight">WebSocket Patterns</a><ul><li><a href="#1-room-based-communication---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Room-based Communication - Lý thuyết và Thực hành</strong></a></li><li><a href="#3-room-based-communication" class="table-of-contents__link toc-highlight">**3. <strong>Room-based Communication</strong></a></li><li><a href="#2-private-messaging---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. Private Messaging - Lý thuyết và Thực hành</strong></a></li><li><a href="#4-private-messaging" class="table-of-contents__link toc-highlight">**4. <strong>Private Messaging</strong></a></li><li><a href="#3-broadcasting---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Broadcasting - Lý thuyết và Thực hành</strong></a></li><li><a href="#5-broadcasting-pattern" class="table-of-contents__link toc-highlight">**5. <strong>Broadcasting Pattern</strong></a></li></ul></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a><ul><li><a href="#1-connection-management---lý-thuyết-và-nguyên-tắc" class="table-of-contents__link toc-highlight"><strong>1. Connection Management - Lý thuyết và Nguyên tắc</strong></a></li><li><a href="#2-error-handling---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>2. Error Handling - Lý thuyết và Chiến lược</strong></a></li><li><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong></a></li></ul></li><li><a href="#so-sánh-với-các-protocol-khác" class="table-of-contents__link toc-highlight">So sánh với các Protocol khác</a><ul><li><a href="#1-websockets-vs-rest" class="table-of-contents__link toc-highlight"><strong>1. WebSockets vs REST:</strong></a></li><li><a href="#2-websockets-vs-grpc" class="table-of-contents__link toc-highlight"><strong>2. WebSockets vs gRPC:</strong></a></li><li><a href="#3-websockets-vs-message-queues" class="table-of-contents__link toc-highlight"><strong>3. WebSockets vs Message Queues:</strong></a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

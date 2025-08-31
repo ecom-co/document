@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-microservices/load-balancing" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">Load Balancing | NestJS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ecom-co.github.io/document/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ecom-co.github.io/document/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ecom-co.github.io/document/docs/microservices/load-balancing"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="vi"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Load Balancing | NestJS Documentation"><meta data-rh="true" name="description" content="Load Balancing giống như &quot;người điều phối giao thông&quot; - phân phối requests đến các service instances để đảm bảo hiệu suất cao và không bị quá tải."><meta data-rh="true" property="og:description" content="Load Balancing giống như &quot;người điều phối giao thông&quot; - phân phối requests đến các service instances để đảm bảo hiệu suất cao và không bị quá tải."><link data-rh="true" rel="icon" href="/document/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ecom-co.github.io/document/docs/microservices/load-balancing"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/load-balancing" hreflang="en"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/vi/docs/microservices/load-balancing" hreflang="vi"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/load-balancing" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Load Balancing","item":"https://ecom-co.github.io/document/docs/microservices/load-balancing"}]}</script><link rel="alternate" type="application/rss+xml" href="/document/blog/rss.xml" title="NestJS Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/document/blog/atom.xml" title="NestJS Documentation Atom Feed"><link rel="stylesheet" href="/document/assets/css/styles.82925b1f.css">
+<script src="/document/assets/js/runtime~main.897e674a.js" defer="defer"></script>
+<script src="/document/assets/js/main.7c416943.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/document/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/document/"><div class="navbar__logo"><img src="/document/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/document/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">NestJS</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/document/docs/">Docs</a><a class="navbar__item navbar__link" href="/document/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div><a href="https://github.com/ecom-co/document" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/document/docs/microservices/load-balancing" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/document/vi/docs/microservices/load-balancing" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="vi">Tiếng Việt</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/docs/">NestJS là gì?</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/docs/installation">Cài đặt NestJS</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/overview/modules">Overview</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/http-exception/http-methods">HTTP &amp; Exception Handling</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/document/docs/microservices/microservices-overview">Microservices &amp; Communication</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-overview">Microservices Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/document/docs/microservices/communication/communication-overview">Communication Protocols</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/service-discovery">Service Discovery</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/document/docs/microservices/load-balancing">Load Balancing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-patterns">Microservices Patterns</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-testing">Microservices Testing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/docs/microservices/microservices-deployment">Microservices Deployment</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/docs/ecom-co/ecom-co-overview">Ecom-co Libraries</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/document/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Microservices &amp; Communication</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Load Balancing</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Load Balancing</h1></header>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Khái niệm cơ bản</div><div class="admonitionContent_BuS1"><p>Load Balancing giống như &quot;người điều phối giao thông&quot; - phân phối requests đến các service instances để đảm bảo hiệu suất cao và không bị quá tải.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="load-balancing-là-gì">Load Balancing là gì?<a href="#load-balancing-là-gì" class="hash-link" aria-label="Direct link to Load Balancing là gì?" title="Direct link to Load Balancing là gì?">​</a></h2>
+<p><strong>Lý thuyết cơ bản:</strong>
+Load Balancing là một pattern phân phối incoming requests đến multiple service instances để đảm bảo hiệu suất cao, availability, và scalability. Nó giúp distribute workload evenly và handle failures gracefully.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Request Distribution</strong>: Phân phối requests đến multiple instances</li>
+<li><strong>Health Checking</strong>: Kiểm tra sức khỏe service instances</li>
+<li><strong>Failover</strong>: Tự động chuyển requests khi instance fail</li>
+<li><strong>Scalability</strong>: Hỗ trợ horizontal scaling</li>
+<li><strong>Performance Optimization</strong>: Tối ưu performance</li>
+<li><strong>Traffic Management</strong>: Quản lý traffic flow</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Request Reception</strong>: Load balancer nhận incoming request</li>
+<li><strong>Instance Selection</strong>: Load balancer chọn service instance</li>
+<li><strong>Request Forwarding</strong>: Forward request đến selected instance</li>
+<li><strong>Response Handling</strong>: Handle response từ service instance</li>
+<li><strong>Health Monitoring</strong>: Monitor instance health</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Received → Routing → Forwarded → Processing → Completed</li>
+<li><strong>Instance State</strong>: Available → Selected → Busy → Available</li>
+<li><strong>Load Balancer State</strong>: Idle → Routing → Monitoring → Idle</li>
+</ul>
+<p><strong>Điểm mạnh (Strengths):</strong></p>
+<ul>
+<li><strong>High Availability</strong>: Đảm bảo high availability</li>
+<li><strong>Scalability</strong>: Dễ dàng scale horizontally</li>
+<li><strong>Performance</strong>: Cải thiện performance</li>
+<li><strong>Fault Tolerance</strong>: Handle failures gracefully</li>
+<li><strong>Traffic Management</strong>: Quản lý traffic flow</li>
+<li><strong>Health Monitoring</strong>: Monitor service health</li>
+<li><strong>Load Distribution</strong>: Distribute load evenly</li>
+<li><strong>Session Management</strong>: Manage user sessions</li>
+</ul>
+<p><strong>Điểm yếu (Weaknesses):</strong></p>
+<ul>
+<li><strong>Single Point of Failure</strong>: Load balancer có thể fail</li>
+<li><strong>Complexity</strong>: Implementation complexity</li>
+<li><strong>Configuration Overhead</strong>: Configuration overhead</li>
+<li><strong>Performance Overhead</strong>: Load balancing overhead</li>
+<li><strong>Session Sticky</strong>: Session sticky complexity</li>
+<li><strong>Health Check Overhead</strong>: Health check overhead</li>
+<li><strong>Network Latency</strong>: Additional network latency</li>
+<li><strong>Resource Usage</strong>: Tốn resources</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-load-balancing">Khi nào nên dùng và khi nào không nên dùng Load Balancing<a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-load-balancing" class="hash-link" aria-label="Direct link to Khi nào nên dùng và khi nào không nên dùng Load Balancing" title="Direct link to Khi nào nên dùng và khi nào không nên dùng Load Balancing">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-load-balancing"><strong>Khi nào NÊN dùng Load Balancing:</strong><a href="#khi-nào-nên-dùng-load-balancing" class="hash-link" aria-label="Direct link to khi-nào-nên-dùng-load-balancing" title="Direct link to khi-nào-nên-dùng-load-balancing">​</a></h3>
+<p><strong>1. High Availability Requirements:</strong></p>
+<ul>
+<li><strong>Mission Critical</strong>: Mission critical applications</li>
+<li><strong>High Uptime</strong>: Cần high uptime</li>
+<li><strong>Fault Tolerance</strong>: Cần fault tolerance</li>
+<li><strong>Disaster Recovery</strong>: Disaster recovery requirements</li>
+</ul>
+<p><strong>2. Scalability Requirements:</strong></p>
+<ul>
+<li><strong>High Traffic</strong>: High traffic applications</li>
+<li><strong>Horizontal Scaling</strong>: Cần horizontal scaling</li>
+<li><strong>Peak Load Handling</strong>: Handle peak loads</li>
+<li><strong>Resource Optimization</strong>: Optimize resource usage</li>
+</ul>
+<p><strong>3. Performance Requirements:</strong></p>
+<ul>
+<li><strong>Low Latency</strong>: Cần low latency</li>
+<li><strong>High Throughput</strong>: High throughput requirements</li>
+<li><strong>Response Time</strong>: Cần response time nhanh</li>
+<li><strong>User Experience</strong>: Better user experience</li>
+</ul>
+<p><strong>4. Multiple Service Instances:</strong></p>
+<ul>
+<li><strong>Microservices</strong>: Microservices architecture</li>
+<li><strong>Multiple Instances</strong>: Multiple service instances</li>
+<li><strong>Distributed Systems</strong>: Distributed systems</li>
+<li><strong>Cloud Native</strong>: Cloud-native applications</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-không-nên-dùng-load-balancing"><strong>Khi nào KHÔNG NÊN dùng Load Balancing:</strong><a href="#khi-nào-không-nên-dùng-load-balancing" class="hash-link" aria-label="Direct link to khi-nào-không-nên-dùng-load-balancing" title="Direct link to khi-nào-không-nên-dùng-load-balancing">​</a></h3>
+<p><strong>1. Simple Applications:</strong></p>
+<ul>
+<li><strong>Single Instance</strong>: Chỉ có single instance</li>
+<li><strong>Low Traffic</strong>: Low traffic applications</li>
+<li><strong>Simple Architecture</strong>: Simple architecture</li>
+<li><strong>Development Environment</strong>: Development environments</li>
+</ul>
+<p><strong>2. Resource Constraints:</strong></p>
+<ul>
+<li><strong>Limited Resources</strong>: Limited infrastructure resources</li>
+<li><strong>Cost Constraints</strong>: High cost requirements</li>
+<li><strong>Complexity Avoidance</strong>: Avoid complexity</li>
+<li><strong>Simple Requirements</strong>: Simple requirements</li>
+</ul>
+<p><strong>3. Performance Critical:</strong></p>
+<ul>
+<li><strong>Ultra-low Latency</strong>: Ultra-low latency requirements</li>
+<li><strong>Direct Connection</strong>: Cần direct connection</li>
+<li><strong>Network Optimization</strong>: Network optimization requirements</li>
+<li><strong>Resource Efficiency</strong>: Resource efficiency requirements</li>
+</ul>
+<p><strong>4. Legacy Systems:</strong></p>
+<ul>
+<li><strong>Old Systems</strong>: Legacy systems</li>
+<li><strong>No Containerization</strong>: No containerization</li>
+<li><strong>Static Infrastructure</strong>: Static infrastructure</li>
+<li><strong>Limited Scalability</strong>: Limited scalability requirements</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cách-áp-dụng-load-balancing-hiệu-quả">Cách áp dụng Load Balancing hiệu quả<a href="#cách-áp-dụng-load-balancing-hiệu-quả" class="hash-link" aria-label="Direct link to Cách áp dụng Load Balancing hiệu quả" title="Direct link to Cách áp dụng Load Balancing hiệu quả">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-chiến-lược-áp-dụng-adoption-strategy"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="hash-link" aria-label="Direct link to 1-chiến-lược-áp-dụng-adoption-strategy" title="Direct link to 1-chiến-lược-áp-dụng-adoption-strategy">​</a></h3>
+<p><strong>Phase 1: Assessment &amp; Planning</strong></p>
+<ul>
+<li><strong>Traffic Analysis</strong>: Analyze traffic patterns</li>
+<li><strong>Performance Requirements</strong>: Identify performance requirements</li>
+<li><strong>Infrastructure Planning</strong>: Plan infrastructure</li>
+<li><strong>Technology Selection</strong>: Choose load balancing technology</li>
+</ul>
+<p><strong>Phase 2: Implementation</strong></p>
+<ul>
+<li><strong>Load Balancer Setup</strong>: Setup load balancer</li>
+<li><strong>Health Checking</strong>: Implement health checking</li>
+<li><strong>Load Distribution</strong>: Implement load distribution</li>
+<li><strong>Failover Logic</strong>: Implement failover logic</li>
+</ul>
+<p><strong>Phase 3: Testing &amp; Deployment</strong></p>
+<ul>
+<li><strong>Load Testing</strong>: Test load balancing performance</li>
+<li><strong>Failover Testing</strong>: Test failover scenarios</li>
+<li><strong>Performance Testing</strong>: Test performance improvements</li>
+<li><strong>Production Deployment</strong>: Deploy to production</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-best-practices-khi-áp-dụng"><strong>2. Best Practices khi áp dụng:</strong><a href="#2-best-practices-khi-áp-dụng" class="hash-link" aria-label="Direct link to 2-best-practices-khi-áp-dụng" title="Direct link to 2-best-practices-khi-áp-dụng">​</a></h3>
+<p><strong>Health Checking:</strong></p>
+<ul>
+<li><strong>Regular Health Checks</strong>: Regular health checks</li>
+<li><strong>Health Check Configuration</strong>: Configure health checks properly</li>
+<li><strong>Failure Detection</strong>: Detect failures quickly</li>
+<li><strong>Recovery Actions</strong>: Take recovery actions</li>
+</ul>
+<p><strong>Load Distribution:</strong></p>
+<ul>
+<li><strong>Algorithm Selection</strong>: Choose appropriate algorithm</li>
+<li><strong>Session Management</strong>: Manage user sessions</li>
+<li><strong>Sticky Sessions</strong>: Implement sticky sessions when needed</li>
+<li><strong>Load Monitoring</strong>: Monitor load distribution</li>
+</ul>
+<p><strong>Performance Optimization:</strong></p>
+<ul>
+<li><strong>Connection Pooling</strong>: Implement connection pooling</li>
+<li><strong>Caching</strong>: Implement caching strategies</li>
+<li><strong>Compression</strong>: Enable compression</li>
+<li><strong>SSL Termination</strong>: Implement SSL termination</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-common-pitfalls-và-cách-tránh"><strong>3. Common Pitfalls và cách tránh:</strong><a href="#3-common-pitfalls-và-cách-tránh" class="hash-link" aria-label="Direct link to 3-common-pitfalls-và-cách-tránh" title="Direct link to 3-common-pitfalls-và-cách-tránh">​</a></h3>
+<p><strong>Configuration Issues:</strong></p>
+<ul>
+<li><strong>❌ Poor Health Checks</strong>: Configure health checks properly</li>
+<li><strong>❌ No Failover</strong>: Implement failover logic</li>
+<li><strong>❌ Poor Algorithm</strong>: Choose appropriate algorithm</li>
+<li><strong>❌ No Monitoring</strong>: Implement monitoring</li>
+</ul>
+<p><strong>Performance Issues:</strong></p>
+<ul>
+<li><strong>❌ No Connection Pooling</strong>: Implement connection pooling</li>
+<li><strong>❌ No Caching</strong>: Implement caching</li>
+<li><strong>❌ No Compression</strong>: Enable compression</li>
+<li><strong>❌ No SSL Optimization</strong>: Optimize SSL</li>
+</ul>
+<p><strong>✅ Cách tránh:</strong></p>
+<ul>
+<li><strong>Plan for Scale</strong>: Plan scaling từ đầu</li>
+<li><strong>Implement Monitoring</strong>: Implement monitoring</li>
+<li><strong>Test Failures</strong>: Test failure scenarios</li>
+<li><strong>Optimize Performance</strong>: Optimize performance</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="load-balancing-algorithms">Load Balancing Algorithms<a href="#load-balancing-algorithms" class="hash-link" aria-label="Direct link to Load Balancing Algorithms" title="Direct link to Load Balancing Algorithms">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-round-robin---lý-thuyết-và-thực-hành"><strong>1. Round Robin - Lý thuyết và Thực hành</strong><a href="#1-round-robin---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 1-round-robin---lý-thuyết-và-thực-hành" title="Direct link to 1-round-robin---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Round Robin:</strong>
+Round Robin là algorithm đơn giản nhất, phân phối requests theo thứ tự tuần tự đến các service instances. Mỗi instance nhận request theo thứ tự.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Sequential Distribution</strong>: Phân phối theo thứ tự</li>
+<li><strong>Equal Distribution</strong>: Distribute requests equally</li>
+<li><strong>Simple Implementation</strong>: Dễ implement</li>
+<li><strong>Predictable Pattern</strong>: Pattern có thể dự đoán</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Request Reception</strong>: Load balancer nhận request</li>
+<li><strong>Instance Selection</strong>: Chọn instance theo thứ tự</li>
+<li><strong>Request Forwarding</strong>: Forward request đến selected instance</li>
+<li><strong>Next Instance</strong>: Chuyển đến instance tiếp theo</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Instance State</strong>: Available → Selected → Busy → Available</li>
+<li><strong>Selection State</strong>: Instance 1 → Instance 2 → Instance 3 → Instance 1</li>
+<li><strong>Request State</strong>: Received → Routing → Forwarded → Completed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Simple</strong>: Algorithm đơn giản</li>
+<li><strong>Equal Distribution</strong>: Distribute requests equally</li>
+<li><strong>Predictable</strong>: Predictable distribution pattern</li>
+<li><strong>Easy Implementation</strong>: Dễ implement</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>No Load Consideration</strong>: Không xem xét load</li>
+<li><strong>No Performance Consideration</strong>: Không xem xét performance</li>
+<li><strong>Uneven Distribution</strong>: Có thể distribute unevenly</li>
+<li><strong>No Health Consideration</strong>: Không xem xét health</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-round-robin-algorithm">**2. <strong>Round Robin Algorithm</strong><a href="#2-round-robin-algorithm" class="hash-link" aria-label="Direct link to 2-round-robin-algorithm" title="Direct link to 2-round-robin-algorithm">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-least-connections---lý-thuyết-và-thực-hành"><strong>3. Least Connections - Lý thuyết và Thực hành</strong><a href="#3-least-connections---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 3-least-connections---lý-thuyết-và-thực-hành" title="Direct link to 3-least-connections---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Least Connections:</strong>
+Least Connections algorithm chọn service instance có ít active connections nhất. Algorithm này đảm bảo distribute load dựa trên current workload.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Connection Counting</strong>: Đếm active connections</li>
+<li><strong>Load-based Selection</strong>: Selection dựa trên load</li>
+<li><strong>Dynamic Distribution</strong>: Dynamic load distribution</li>
+<li><strong>Performance Consideration</strong>: Xem xét performance</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Connection Monitoring</strong>: Monitor active connections</li>
+<li><strong>Instance Selection</strong>: Chọn instance với ít connections nhất</li>
+<li><strong>Request Forwarding</strong>: Forward request đến selected instance</li>
+<li><strong>Connection Update</strong>: Update connection count</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Connection State</strong>: 0 → 1 → 2 → 3 → 2 → 1 → 0</li>
+<li><strong>Instance State</strong>: Idle → Busy → Busier → Busiest → Busier → Busy → Idle</li>
+<li><strong>Selection State</strong>: Least Loaded → Current Load → Next Selection</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Load Aware</strong>: Aware of current load</li>
+<li><strong>Performance Optimized</strong>: Optimize performance</li>
+<li><strong>Dynamic Distribution</strong>: Dynamic distribution</li>
+<li><strong>Fair Distribution</strong>: Fair distribution</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Higher complexity</li>
+<li><strong>State Management</strong>: Cần quản lý state</li>
+<li><strong>Performance Overhead</strong>: Performance overhead</li>
+<li><strong>Connection Tracking</strong>: Track connections</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-least-connections-algorithm">**4. <strong>Least Connections Algorithm</strong><a href="#4-least-connections-algorithm" class="hash-link" aria-label="Direct link to 4-least-connections-algorithm" title="Direct link to 4-least-connections-algorithm">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-weighted-round-robin---lý-thuyết-và-thực-hành"><strong>5. Weighted Round Robin - Lý thuyết và Thực hành</strong><a href="#5-weighted-round-robin---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 5-weighted-round-robin---lý-thuyết-và-thực-hành" title="Direct link to 5-weighted-round-robin---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Weighted Round Robin:</strong>
+Weighted Round Robin là extension của Round Robin, cho phép assign weights cho các service instances. Instances với weight cao hơn nhận nhiều requests hơn.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Weight Assignment</strong>: Assign weights cho instances</li>
+<li><strong>Proportional Distribution</strong>: Distribute proportionally</li>
+<li><strong>Performance Consideration</strong>: Xem xét performance</li>
+<li><strong>Configurable</strong>: Configurable distribution</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Weight Configuration</strong>: Configure weights cho instances</li>
+<li><strong>Request Distribution</strong>: Distribute requests theo weights</li>
+<li><strong>Proportional Routing</strong>: Route requests proportionally</li>
+<li><strong>Weight Management</strong>: Manage instance weights</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Weight State</strong>: Configured → Applied → Monitored → Adjusted</li>
+<li><strong>Distribution State</strong>: Proportional → Balanced → Optimized</li>
+<li><strong>Instance State</strong>: Weighted → Selected → Processing → Available</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Performance Aware</strong>: Aware of performance differences</li>
+<li><strong>Configurable</strong>: Configurable distribution</li>
+<li><strong>Proportional</strong>: Proportional distribution</li>
+<li><strong>Flexible</strong>: Flexible configuration</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Configuration Complexity</strong>: Configuration complexity</li>
+<li><strong>Weight Management</strong>: Cần quản lý weights</li>
+<li><strong>Performance Monitoring</strong>: Monitor performance</li>
+<li><strong>Dynamic Adjustment</strong>: Dynamic weight adjustment</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="6-weighted-round-robin-algorithm">**6. <strong>Weighted Round Robin Algorithm</strong><a href="#6-weighted-round-robin-algorithm" class="hash-link" aria-label="Direct link to 6-weighted-round-robin-algorithm" title="Direct link to 6-weighted-round-robin-algorithm">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="load-balancing-types">Load Balancing Types<a href="#load-balancing-types" class="hash-link" aria-label="Direct link to Load Balancing Types" title="Direct link to Load Balancing Types">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-layer-4-load-balancing---lý-thuyết-và-thực-hành"><strong>1. Layer 4 Load Balancing - Lý thuyết và Thực hành</strong><a href="#1-layer-4-load-balancing---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 1-layer-4-load-balancing---lý-thuyết-và-thực-hành" title="Direct link to 1-layer-4-load-balancing---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Layer 4 Load Balancing:</strong>
+Layer 4 Load Balancing hoạt động ở Transport layer (TCP/UDP). Nó route traffic dựa trên IP addresses và ports, không inspect application data.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Transport Layer</strong>: Hoạt động ở Layer 4</li>
+<li><strong>IP-based Routing</strong>: Route dựa trên IP addresses</li>
+<li><strong>Port-based Routing</strong>: Route dựa trên ports</li>
+<li><strong>Fast Performance</strong>: Fast performance</li>
+<li><strong>Low Overhead</strong>: Low overhead</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Packet Reception</strong>: Nhận network packets</li>
+<li><strong>Header Inspection</strong>: Inspect packet headers</li>
+<li><strong>Routing Decision</strong>: Make routing decision</li>
+<li><strong>Packet Forwarding</strong>: Forward packets</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Packet State</strong>: Received → Inspected → Routed → Forwarded</li>
+<li><strong>Routing State</strong>: Idle → Routing → Forwarding → Idle</li>
+<li><strong>Network State</strong>: Connected → Routing → Connected</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Fast Performance</strong>: Fast performance</li>
+<li><strong>Low Overhead</strong>: Low overhead</li>
+<li><strong>Simple</strong>: Simple implementation</li>
+<li><strong>Efficient</strong>: Efficient routing</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>No Application Awareness</strong>: Không aware of application</li>
+<li><strong>Limited Functionality</strong>: Limited functionality</li>
+<li><strong>No Content-based Routing</strong>: No content-based routing</li>
+<li><strong>Basic Load Balancing</strong>: Basic load balancing</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="7-layer-4-load-balancing">**7. <strong>Layer 4 Load Balancing</strong><a href="#7-layer-4-load-balancing" class="hash-link" aria-label="Direct link to 7-layer-4-load-balancing" title="Direct link to 7-layer-4-load-balancing">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-layer-7-load-balancing---lý-thuyết-và-thực-hành"><strong>2. Layer 7 Load Balancing - Lý thuyết và Thực hành</strong><a href="#2-layer-7-load-balancing---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 2-layer-7-load-balancing---lý-thuyết-và-thực-hành" title="Direct link to 2-layer-7-load-balancing---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Layer 7 Load Balancing:</strong>
+Layer 7 Load Balancing hoạt động ở Application layer (HTTP/HTTPS). Nó inspect application data và make routing decisions dựa trên content.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Application Layer</strong>: Hoạt động ở Layer 7</li>
+<li><strong>Content Inspection</strong>: Inspect application content</li>
+<li><strong>HTTP-based Routing</strong>: Route dựa trên HTTP data</li>
+<li><strong>Advanced Features</strong>: Advanced features</li>
+<li><strong>Content-aware</strong>: Content-aware routing</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Request Reception</strong>: Nhận HTTP requests</li>
+<li><strong>Content Inspection</strong>: Inspect request content</li>
+<li><strong>Routing Decision</strong>: Make routing decision</li>
+<li><strong>Request Forwarding</strong>: Forward requests</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Received → Inspected → Routed → Forwarded</li>
+<li><strong>Content State</strong>: Raw → Parsed → Analyzed → Routed</li>
+<li><strong>Routing State</strong>: Idle → Analyzing → Routing → Forwarding</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Content Aware</strong>: Aware of content</li>
+<li><strong>Advanced Features</strong>: Advanced features</li>
+<li><strong>HTTP Optimization</strong>: HTTP optimization</li>
+<li><strong>Flexible Routing</strong>: Flexible routing</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Higher Overhead</strong>: Higher overhead</li>
+<li><strong>Complexity</strong>: Higher complexity</li>
+<li><strong>Performance Impact</strong>: Performance impact</li>
+<li><strong>Resource Usage</strong>: Higher resource usage</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="8-layer-7-load-balancing">**8. <strong>Layer 7 Load Balancing</strong><a href="#8-layer-7-load-balancing" class="hash-link" aria-label="Direct link to 8-layer-7-load-balancing" title="Direct link to 8-layer-7-load-balancing">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="load-balancing-technologies">Load Balancing Technologies<a href="#load-balancing-technologies" class="hash-link" aria-label="Direct link to Load Balancing Technologies" title="Direct link to Load Balancing Technologies">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-nginx---lý-thuyết-và-thực-hành"><strong>1. Nginx - Lý thuyết và Thực hành</strong><a href="#1-nginx---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 1-nginx---lý-thuyết-và-thực-hành" title="Direct link to 1-nginx---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Nginx:</strong>
+Nginx là một web server và reverse proxy với load balancing capabilities. Nó hỗ trợ multiple load balancing algorithms và health checking.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Web Server</strong>: Web server functionality</li>
+<li><strong>Reverse Proxy</strong>: Reverse proxy capabilities</li>
+<li><strong>Load Balancing</strong>: Load balancing features</li>
+<li><strong>Health Checking</strong>: Health checking support</li>
+<li><strong>SSL Termination</strong>: SSL termination</li>
+<li><strong>Caching</strong>: Caching capabilities</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Request Reception</strong>: Nhận HTTP requests</li>
+<li><strong>Load Balancing</strong>: Apply load balancing algorithm</li>
+<li><strong>Health Checking</strong>: Check backend health</li>
+<li><strong>Request Forwarding</strong>: Forward requests</li>
+<li><strong>Response Handling</strong>: Handle responses</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Received → Balanced → Forwarded → Processed → Returned</li>
+<li><strong>Backend State</strong>: Healthy → Selected → Processing → Available</li>
+<li><strong>Load Balancer State</strong>: Idle → Balancing → Forwarding → Monitoring</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>High Performance</strong>: High performance</li>
+<li><strong>Feature Rich</strong>: Rich feature set</li>
+<li><strong>Easy Configuration</strong>: Easy configuration</li>
+<li><strong>Good Documentation</strong>: Good documentation</li>
+<li><strong>Community Support</strong>: Strong community support</li>
+<li><strong>Free</strong>: Free and open source</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Configuration Complexity</strong>: Configuration complexity</li>
+<li><strong>Learning Curve</strong>: Learning curve</li>
+<li><strong>Dynamic Configuration</strong>: Limited dynamic configuration</li>
+<li><strong>Service Discovery</strong>: Limited service discovery</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="9-nginx-load-balancing">**9. <strong>Nginx Load Balancing</strong><a href="#9-nginx-load-balancing" class="hash-link" aria-label="Direct link to 9-nginx-load-balancing" title="Direct link to 9-nginx-load-balancing">​</a></h3>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-haproxy---lý-thuyết-và-thực-hành"><strong>2. HAProxy - Lý thuyết và Thực hành</strong><a href="#2-haproxy---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Direct link to 2-haproxy---lý-thuyết-và-thực-hành" title="Direct link to 2-haproxy---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về HAProxy:</strong>
+HAProxy là một high-performance load balancer và proxy server. Nó được thiết kế cho high availability và performance.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>High Performance</strong>: High performance design</li>
+<li><strong>TCP/HTTP Support</strong>: TCP và HTTP support</li>
+<li><strong>Health Checking</strong>: Advanced health checking</li>
+<li><strong>Statistics</strong>: Detailed statistics</li>
+<li><strong>Configuration</strong>: Flexible configuration</li>
+<li><strong>Monitoring</strong>: Built-in monitoring</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Connection Reception</strong>: Nhận connections</li>
+<li><strong>Load Balancing</strong>: Apply load balancing</li>
+<li><strong>Health Monitoring</strong>: Monitor backend health</li>
+<li><strong>Connection Forwarding</strong>: Forward connections</li>
+<li><strong>Statistics Collection</strong>: Collect statistics</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Connection State</strong>: Established → Balanced → Forwarded → Active → Closed</li>
+<li><strong>Backend State</strong>: Healthy → Selected → Active → Available</li>
+<li><strong>Statistics State</strong>: Collecting → Processing → Storing → Reporting</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>High Performance</strong>: Very high performance</li>
+<li><strong>Advanced Features</strong>: Advanced features</li>
+<li><strong>Good Statistics</strong>: Good statistics</li>
+<li><strong>Flexible Configuration</strong>: Flexible configuration</li>
+<li><strong>Professional Support</strong>: Professional support</li>
+<li><strong>Enterprise Ready</strong>: Enterprise ready</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: High complexity</li>
+<li><strong>Configuration</strong>: Complex configuration</li>
+<li><strong>Learning Curve</strong>: Steep learning curve</li>
+<li><strong>Resource Usage</strong>: Higher resource usage</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="10-haproxy-load-balancing">**10. <strong>HAProxy Load Balancing</strong><a href="#10-haproxy-load-balancing" class="hash-link" aria-label="Direct link to 10-haproxy-load-balancing" title="Direct link to 10-haproxy-load-balancing">​</a></h3>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-health-checking---lý-thuyết-và-nguyên-tắc"><strong>1. Health Checking - Lý thuyết và Nguyên tắc</strong><a href="#1-health-checking---lý-thuyết-và-nguyên-tắc" class="hash-link" aria-label="Direct link to 1-health-checking---lý-thuyết-và-nguyên-tắc" title="Direct link to 1-health-checking---lý-thuyết-và-nguyên-tắc">​</a></h3>
+<p><strong>Nguyên tắc cơ bản:</strong></p>
+<ul>
+<li><strong>Regular Checks</strong>: Regular health checks</li>
+<li><strong>Quick Detection</strong>: Quick failure detection</li>
+<li><strong>Recovery Actions</strong>: Take recovery actions</li>
+<li><strong>Monitoring</strong>: Continuous monitoring</li>
+</ul>
+<p><strong>Quy tắc lựa chọn:</strong></p>
+<ol>
+<li><strong>Check Frequency</strong>: Choose appropriate frequency</li>
+<li><strong>Check Type</strong>: Choose check type</li>
+<li><strong>Timeout Configuration</strong>: Configure timeouts</li>
+<li><strong>Recovery Strategy</strong>: Plan recovery strategy</li>
+</ol>
+<p><strong>Trade-offs cần cân nhắc:</strong></p>
+<ul>
+<li><strong>Frequency vs Overhead</strong>: Balance frequency và overhead</li>
+<li><strong>Detection Speed vs Resource Usage</strong>: Balance speed và resources</li>
+<li><strong>Check Type vs Accuracy</strong>: Balance type và accuracy</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-load-distribution---lý-thuyết-và-chiến-lược"><strong>2. Load Distribution - Lý thuyết và Chiến lược</strong><a href="#2-load-distribution---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Direct link to 2-load-distribution---lý-thuyết-và-chiến-lược" title="Direct link to 2-load-distribution---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý Load Distribution:</strong></p>
+<ul>
+<li><strong>Algorithm Selection</strong>: Choose appropriate algorithm</li>
+<li><strong>Session Management</strong>: Manage user sessions</li>
+<li><strong>Sticky Sessions</strong>: Implement sticky sessions</li>
+<li><strong>Load Monitoring</strong>: Monitor load distribution</li>
+</ul>
+<p><strong>Chiến lược Load Distribution:</strong></p>
+<ul>
+<li><strong>Distribution Strategy</strong>: Choose distribution strategy</li>
+<li><strong>Session Strategy</strong>: Choose session strategy</li>
+<li><strong>Monitoring Strategy</strong>: Choose monitoring strategy</li>
+<li><strong>Optimization Strategy</strong>: Choose optimization strategy</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Choose Algorithm</strong>: Choose appropriate algorithm</li>
+<li><strong>Manage Sessions</strong>: Manage user sessions</li>
+<li><strong>Monitor Load</strong>: Monitor load distribution</li>
+<li><strong>Optimize Performance</strong>: Optimize performance</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-performance-optimization---lý-thuyết-và-chiến-lược"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Direct link to 3-performance-optimization---lý-thuyết-và-chiến-lược" title="Direct link to 3-performance-optimization---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý tối ưu Performance:</strong></p>
+<ul>
+<li><strong>Connection Pooling</strong>: Implement connection pooling</li>
+<li><strong>Caching</strong>: Implement caching strategies</li>
+<li><strong>Compression</strong>: Enable compression</li>
+<li><strong>SSL Optimization</strong>: Optimize SSL</li>
+</ul>
+<p><strong>Chiến lược tối ưu Performance:</strong></p>
+<ul>
+<li><strong>Pooling Strategy</strong>: Choose pooling strategy</li>
+<li><strong>Caching Strategy</strong>: Choose caching strategy</li>
+<li><strong>Compression Strategy</strong>: Choose compression strategy</li>
+<li><strong>SSL Strategy</strong>: Choose SSL strategy</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Implement Pooling</strong>: Implement connection pooling</li>
+<li><strong>Implement Caching</strong>: Implement caching</li>
+<li><strong>Enable Compression</strong>: Enable compression</li>
+<li><strong>Optimize SSL</strong>: Optimize SSL</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="so-sánh-với-các-technology-khác">So sánh với các Technology khác<a href="#so-sánh-với-các-technology-khác" class="hash-link" aria-label="Direct link to So sánh với các Technology khác" title="Direct link to So sánh với các Technology khác">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-nginx-vs-haproxy"><strong>1. Nginx vs HAProxy:</strong><a href="#1-nginx-vs-haproxy" class="hash-link" aria-label="Direct link to 1-nginx-vs-haproxy" title="Direct link to 1-nginx-vs-haproxy">​</a></h3>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>Nginx</strong>: High performance, good for web traffic</li>
+<li><strong>HAProxy</strong>: Very high performance, good for TCP traffic</li>
+<li><strong>Kết quả</strong>: HAProxy tốt hơn cho performance</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Nginx</strong>: Web server + load balancer</li>
+<li><strong>HAProxy</strong>: Dedicated load balancer</li>
+<li><strong>Kết quả</strong>: HAProxy tốt hơn cho load balancing</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Nginx</strong>: Web applications, reverse proxy</li>
+<li><strong>HAProxy</strong>: High-performance load balancing</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-layer-4-vs-layer-7"><strong>2. Layer 4 vs Layer 7:</strong><a href="#2-layer-4-vs-layer-7" class="hash-link" aria-label="Direct link to 2-layer-4-vs-layer-7" title="Direct link to 2-layer-4-vs-layer-7">​</a></h3>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>Layer 4</strong>: Fast performance, low overhead</li>
+<li><strong>Layer 7</strong>: Higher overhead, more features</li>
+<li><strong>Kết quả</strong>: Layer 4 tốt hơn cho performance</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Layer 4</strong>: Basic load balancing</li>
+<li><strong>Layer 7</strong>: Advanced features, content-aware</li>
+<li><strong>Kết quả</strong>: Layer 7 tốt hơn cho features</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Layer 4</strong>: Simple load balancing, TCP/UDP</li>
+<li><strong>Layer 7</strong>: HTTP load balancing, content-based routing</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<hr>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Lời khuyên tổng kết - Lý thuyết và Thực hành</div><div class="admonitionContent_BuS1"><p><strong>Nguyên tắc cơ bản:</strong></p><ul>
+<li><strong>Technology Selection</strong>: Load Balancing phù hợp cho high availability và scalability</li>
+<li><strong>Performance vs Features</strong>: Layer 4 fast, Layer 7 feature-rich</li>
+<li><strong>Algorithm Selection</strong>: Choose algorithm based on requirements</li>
+</ul><p><strong>Quy tắc thực hành:</strong></p><ol>
+<li><strong>Load Balancing</strong>: Cho high availability, scalability, performance</li>
+<li><strong>Health Checking</strong>: Cho fault tolerance, reliability</li>
+<li><strong>Performance Optimization</strong>: Cho optimal performance</li>
+</ol><p><strong>Lý do tại sao:</strong></p><ul>
+<li><strong>Load Balancing</strong>: High availability, scalability, performance</li>
+<li><strong>Health Checking</strong>: Fault tolerance, reliability, monitoring</li>
+<li><strong>Performance Optimization</strong>: Optimal performance, resource usage</li>
+</ul><p><strong>Cách xử lý biến đổi:</strong></p><ul>
+<li><strong>Request State</strong>: Received → Balanced → Forwarded → Completed</li>
+<li><strong>Instance State</strong>: Available → Selected → Busy → Available</li>
+<li><strong>Health State</strong>: Healthy → Unhealthy → Failed → Recovered</li>
+</ul></div></div>
+<p><strong>Bài tiếp theo:</strong> <a href="/document/docs/microservices/microservices-patterns">Microservices Patterns</a></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/ecom-co/document/tree/main/docs/microservices/load-balancing.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/document/docs/microservices/service-discovery"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Service Discovery</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/document/docs/microservices/microservices-patterns"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Microservices Patterns</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#load-balancing-là-gì" class="table-of-contents__link toc-highlight">Load Balancing là gì?</a></li><li><a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-load-balancing" class="table-of-contents__link toc-highlight">Khi nào nên dùng và khi nào không nên dùng Load Balancing</a><ul><li><a href="#khi-nào-nên-dùng-load-balancing" class="table-of-contents__link toc-highlight"><strong>Khi nào NÊN dùng Load Balancing:</strong></a></li><li><a href="#khi-nào-không-nên-dùng-load-balancing" class="table-of-contents__link toc-highlight"><strong>Khi nào KHÔNG NÊN dùng Load Balancing:</strong></a></li></ul></li><li><a href="#cách-áp-dụng-load-balancing-hiệu-quả" class="table-of-contents__link toc-highlight">Cách áp dụng Load Balancing hiệu quả</a><ul><li><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="table-of-contents__link toc-highlight"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong></a></li><li><a href="#2-best-practices-khi-áp-dụng" class="table-of-contents__link toc-highlight"><strong>2. Best Practices khi áp dụng:</strong></a></li><li><a href="#3-common-pitfalls-và-cách-tránh" class="table-of-contents__link toc-highlight"><strong>3. Common Pitfalls và cách tránh:</strong></a></li></ul></li><li><a href="#load-balancing-algorithms" class="table-of-contents__link toc-highlight">Load Balancing Algorithms</a><ul><li><a href="#1-round-robin---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Round Robin - Lý thuyết và Thực hành</strong></a></li><li><a href="#2-round-robin-algorithm" class="table-of-contents__link toc-highlight">**2. <strong>Round Robin Algorithm</strong></a></li><li><a href="#3-least-connections---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Least Connections - Lý thuyết và Thực hành</strong></a></li><li><a href="#4-least-connections-algorithm" class="table-of-contents__link toc-highlight">**4. <strong>Least Connections Algorithm</strong></a></li><li><a href="#5-weighted-round-robin---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>5. Weighted Round Robin - Lý thuyết và Thực hành</strong></a></li><li><a href="#6-weighted-round-robin-algorithm" class="table-of-contents__link toc-highlight">**6. <strong>Weighted Round Robin Algorithm</strong></a></li></ul></li><li><a href="#load-balancing-types" class="table-of-contents__link toc-highlight">Load Balancing Types</a><ul><li><a href="#1-layer-4-load-balancing---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Layer 4 Load Balancing - Lý thuyết và Thực hành</strong></a></li><li><a href="#7-layer-4-load-balancing" class="table-of-contents__link toc-highlight">**7. <strong>Layer 4 Load Balancing</strong></a></li><li><a href="#2-layer-7-load-balancing---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. Layer 7 Load Balancing - Lý thuyết và Thực hành</strong></a></li><li><a href="#8-layer-7-load-balancing" class="table-of-contents__link toc-highlight">**8. <strong>Layer 7 Load Balancing</strong></a></li></ul></li><li><a href="#load-balancing-technologies" class="table-of-contents__link toc-highlight">Load Balancing Technologies</a><ul><li><a href="#1-nginx---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Nginx - Lý thuyết và Thực hành</strong></a></li><li><a href="#9-nginx-load-balancing" class="table-of-contents__link toc-highlight">**9. <strong>Nginx Load Balancing</strong></a></li><li><a href="#2-haproxy---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. HAProxy - Lý thuyết và Thực hành</strong></a></li><li><a href="#10-haproxy-load-balancing" class="table-of-contents__link toc-highlight">**10. <strong>HAProxy Load Balancing</strong></a></li></ul></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a><ul><li><a href="#1-health-checking---lý-thuyết-và-nguyên-tắc" class="table-of-contents__link toc-highlight"><strong>1. Health Checking - Lý thuyết và Nguyên tắc</strong></a></li><li><a href="#2-load-distribution---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>2. Load Distribution - Lý thuyết và Chiến lược</strong></a></li><li><a href="#3-performance-optimization---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>3. Performance Optimization - Lý thuyết và Chiến lược</strong></a></li></ul></li><li><a href="#so-sánh-với-các-technology-khác" class="table-of-contents__link toc-highlight">So sánh với các Technology khác</a><ul><li><a href="#1-nginx-vs-haproxy" class="table-of-contents__link toc-highlight"><strong>1. Nginx vs HAProxy:</strong></a></li><li><a href="#2-layer-4-vs-layer-7" class="table-of-contents__link toc-highlight"><strong>2. Layer 4 vs Layer 7:</strong></a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

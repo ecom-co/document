@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="vi" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-microservices/communication/rest-protocol" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">REST Protocol | NestJS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ecom-co.github.io/document/vi/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ecom-co.github.io/document/vi/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ecom-co.github.io/document/vi/docs/microservices/communication/rest-protocol"><meta data-rh="true" property="og:locale" content="vi"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="vi"><meta data-rh="true" name="docsearch:language" content="vi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="REST Protocol | NestJS Documentation"><meta data-rh="true" name="description" content="REST giống như &quot;ngôn ngữ tiêu chuẩn&quot; của web - sử dụng HTTP methods và status codes để giao tiếp một cách nhất quán và dễ hiểu."><meta data-rh="true" property="og:description" content="REST giống như &quot;ngôn ngữ tiêu chuẩn&quot; của web - sử dụng HTTP methods và status codes để giao tiếp một cách nhất quán và dễ hiểu."><link data-rh="true" rel="icon" href="/document/vi/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ecom-co.github.io/document/vi/docs/microservices/communication/rest-protocol"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/rest-protocol" hreflang="en"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/vi/docs/microservices/communication/rest-protocol" hreflang="vi"><link data-rh="true" rel="alternate" href="https://ecom-co.github.io/document/docs/microservices/communication/rest-protocol" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"REST Protocol","item":"https://ecom-co.github.io/document/vi/docs/microservices/communication/rest-protocol"}]}</script><link rel="alternate" type="application/rss+xml" href="/document/vi/blog/rss.xml" title="NestJS Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/document/vi/blog/atom.xml" title="NestJS Documentation Atom Feed"><link rel="stylesheet" href="/document/vi/assets/css/styles.82925b1f.css">
+<script src="/document/vi/assets/js/runtime~main.2032a609.js" defer="defer"></script>
+<script src="/document/vi/assets/js/main.c5601bfa.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/document/vi/img/logo.svg"><div role="region" aria-label="Chuyển tới nội dung chính"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Chuyển tới nội dung chính</a></div><nav aria-label="Thanh điều hướng" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Đóng - mở thanh điều hướng" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/document/vi/"><div class="navbar__logo"><img src="/document/vi/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/document/vi/img/logo.svg" alt="NestJS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">NestJS</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/document/vi/docs/">Docs</a><a class="navbar__item navbar__link" href="/document/vi/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Tìm kiếm..." aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div><a href="https://github.com/ecom-co/document" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Tiếng Việt</a><ul class="dropdown__menu"><li><a href="/document/docs/microservices/communication/rest-protocol" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/document/vi/docs/microservices/communication/rest-protocol" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="vi">Tiếng Việt</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Chuyển đổi chế độ sáng và tối (hiện tại là system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Trở lại đầu trang" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Thanh điều hướng tài liệu" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/vi/docs/">NestJS là gì?</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/document/vi/docs/installation">Cài đặt NestJS</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/overview/modules">Overview</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/http-exception/http-methods">HTTP &amp; Exception Handling</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/document/vi/docs/microservices/microservices-overview">Microservices &amp; Communication</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-overview">Microservices Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/document/vi/docs/microservices/communication/communication-overview">Communication Protocols</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/communication-overview">Communication Overview</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/grpc-protocol">gRPC Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/document/vi/docs/microservices/communication/rest-protocol">REST Protocol</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/message-queues">Message Queues</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/websockets">WebSockets</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/communication/event-driven">Event-Driven Communication</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/service-discovery">Service Discovery</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/load-balancing">Load Balancing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-patterns">Microservices Patterns</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-testing">Microservices Testing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/document/vi/docs/microservices/microservices-deployment">Microservices Deployment</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/document/vi/docs/ecom-co/ecom-co-overview">Ecom-co Libraries</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Liên kết điều hướng"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Trang chủ" class="breadcrumbs__link" href="/document/vi/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Microservices &amp; Communication</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Communication Protocols</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">REST Protocol</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">Trên trang này</button></div><div class="theme-doc-markdown markdown"><header><h1>REST Protocol</h1></header>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Khái niệm cơ bản</div><div class="admonitionContent_BuS1"><p>REST giống như &quot;ngôn ngữ tiêu chuẩn&quot; của web - sử dụng HTTP methods và status codes để giao tiếp một cách nhất quán và dễ hiểu.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rest-là-gì">REST là gì?<a href="#rest-là-gì" class="hash-link" aria-label="Đường dẫn trực tiếp đến REST là gì?" title="Đường dẫn trực tiếp đến REST là gì?">​</a></h2>
+<p><strong>Lý thuyết cơ bản:</strong>
+REST (Representational State Transfer) là một architectural style cho distributed systems, đặc biệt là web services. REST sử dụng HTTP protocol với các principles cơ bản để tạo ra APIs đơn giản, scalable và maintainable.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>HTTP-based</strong>: Sử dụng HTTP protocol làm transport layer</li>
+<li><strong>Stateless</strong>: Mỗi request độc lập, không lưu trữ state</li>
+<li><strong>Resource-oriented</strong>: Tập trung vào resources thay vì actions</li>
+<li><strong>Standard Methods</strong>: Sử dụng HTTP methods chuẩn (GET, POST, PUT, DELETE)</li>
+<li><strong>Status Codes</strong>: Sử dụng HTTP status codes chuẩn</li>
+<li><strong>Stateless</strong>: Không lưu trữ session state giữa các requests</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Client Request</strong>: Client gửi HTTP request với method và URL</li>
+<li><strong>Server Processing</strong>: Server xử lý request dựa trên method và resource</li>
+<li><strong>Response Generation</strong>: Server trả về HTTP response với status code và data</li>
+<li><strong>State Management</strong>: Client quản lý state, server không lưu state</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Created → Transmitted → Processed → Completed</li>
+<li><strong>Resource State</strong>: Unchanged → Modified → Updated → Deleted</li>
+<li><strong>Client State</strong>: Independent → Independent → Independent → Independent</li>
+</ul>
+<p><strong>Điểm mạnh (Strengths):</strong></p>
+<ul>
+<li><strong>Universal Compatibility</strong>: Hỗ trợ mọi platform, language, browser</li>
+<li><strong>Human Readable</strong>: Text-based, dễ đọc và debug</li>
+<li><strong>Standard Protocol</strong>: Sử dụng HTTP chuẩn, không cần special tools</li>
+<li><strong>Stateless</strong>: Dễ scale, load balance, cache</li>
+<li><strong>Caching Support</strong>: HTTP caching mechanisms built-in</li>
+<li><strong>Tooling</strong>: Nhiều tools hỗ trợ (Postman, Insomnia, curl)</li>
+<li><strong>Documentation</strong>: Dễ document và test</li>
+<li><strong>Firewall Friendly</strong>: Pass qua firewalls dễ dàng</li>
+</ul>
+<p><strong>Điểm yếu (Weaknesses):</strong></p>
+<ul>
+<li><strong>Performance</strong>: Text-based protocol, slower than binary</li>
+<li><strong>Over-fetching</strong>: Lấy data nhiều hơn cần thiết</li>
+<li><strong>Under-fetching</strong>: Cần multiple requests để lấy đủ data</li>
+<li><strong>No Built-in Streaming</strong>: Không hỗ trợ streaming natively</li>
+<li><strong>Versioning Complexity</strong>: API versioning phức tạp</li>
+<li><strong>Security</strong>: Cần implement security layers riêng</li>
+<li><strong>State Management</strong>: Client phải quản lý state</li>
+<li><strong>Network Overhead</strong>: HTTP headers và metadata overhead</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-rest">Khi nào nên dùng và khi nào không nên dùng REST<a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-rest" class="hash-link" aria-label="Đường dẫn trực tiếp đến Khi nào nên dùng và khi nào không nên dùng REST" title="Đường dẫn trực tiếp đến Khi nào nên dùng và khi nào không nên dùng REST">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-nên-dùng-rest"><strong>Khi nào NÊN dùng REST:</strong><a href="#khi-nào-nên-dùng-rest" class="hash-link" aria-label="Đường dẫn trực tiếp đến khi-nào-nên-dùng-rest" title="Đường dẫn trực tiếp đến khi-nào-nên-dùng-rest">​</a></h3>
+<p><strong>1. Public APIs &amp; Web Applications:</strong></p>
+<ul>
+<li><strong>Public APIs</strong>: APIs cần browser access</li>
+<li><strong>Web Applications</strong>: Frontend web applications</li>
+<li><strong>Mobile Apps</strong>: Mobile app backends</li>
+<li><strong>Third-party Integrations</strong>: External service integrations</li>
+</ul>
+<p><strong>2. Simple CRUD Operations:</strong></p>
+<ul>
+<li><strong>Basic CRUD</strong>: Create, Read, Update, Delete operations</li>
+<li><strong>Data Management</strong>: Admin panels, content management</li>
+<li><strong>Reporting Tools</strong>: Data retrieval và reporting</li>
+<li><strong>Simple Workflows</strong>: Basic business processes</li>
+</ul>
+<p><strong>3. Human-readable Requirements:</strong></p>
+<ul>
+<li><strong>Debugging Needs</strong>: Cần đọc được request/response</li>
+<li><strong>API Documentation</strong>: Cần human-readable format</li>
+<li><strong>Manual Testing</strong>: Manual testing và debugging</li>
+<li><strong>Support Teams</strong>: Technical support cần đọc logs</li>
+</ul>
+<p><strong>4. Universal Compatibility:</strong></p>
+<ul>
+<li><strong>Cross-platform</strong>: Cần hoạt động trên mọi platform</li>
+<li><strong>Browser Support</strong>: Cần browser compatibility</li>
+<li><strong>Legacy Systems</strong>: Integration với old systems</li>
+<li><strong>Firewall Requirements</strong>: Pass qua corporate firewalls</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="khi-nào-không-nên-dùng-rest"><strong>Khi nào KHÔNG NÊN dùng REST:</strong><a href="#khi-nào-không-nên-dùng-rest" class="hash-link" aria-label="Đường dẫn trực tiếp đến khi-nào-không-nên-dùng-rest" title="Đường dẫn trực tiếp đến khi-nào-không-nên-dùng-rest">​</a></h3>
+<p><strong>1. High-Performance Requirements:</strong></p>
+<ul>
+<li><strong>Real-time Applications</strong>: Chat apps, live streaming, gaming</li>
+<li><strong>High-throughput Systems</strong>: Data processing, analytics, ETL pipelines</li>
+<li><strong>Low-latency Requirements</strong>: Financial trading, real-time monitoring</li>
+<li><strong>Microservices Communication</strong>: Service-to-service high-performance calls</li>
+</ul>
+<p><strong>2. Complex Data Relationships:</strong></p>
+<ul>
+<li><strong>Graph-like Data</strong>: Complex data relationships</li>
+<li><strong>Nested Queries</strong>: Deep nested data structures</li>
+<li><strong>Flexible Queries</strong>: Dynamic query requirements</li>
+<li><strong>Data Aggregation</strong>: Complex data aggregation needs</li>
+</ul>
+<p><strong>3. Streaming Requirements:</strong></p>
+<ul>
+<li><strong>Bidirectional Communication</strong>: Real-time bidirectional communication</li>
+<li><strong>Large Data Transfer</strong>: Large file uploads, data streaming</li>
+<li><strong>Event-driven Systems</strong>: Real-time event processing</li>
+<li><strong>IoT Applications</strong>: Device communication, sensor data</li>
+</ul>
+<p><strong>4. Strong Type Safety:</strong></p>
+<ul>
+<li><strong>Enterprise Applications</strong>: Cần contract enforcement</li>
+<li><strong>API Versioning</strong>: Cần strict backward compatibility</li>
+<li><strong>Multi-language Teams</strong>: Teams cần type safety</li>
+<li><strong>Contract-first Development</strong>: API design trước, implementation sau</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cách-áp-dụng-rest-hiệu-quả">Cách áp dụng REST hiệu quả<a href="#cách-áp-dụng-rest-hiệu-quả" class="hash-link" aria-label="Đường dẫn trực tiếp đến Cách áp dụng REST hiệu quả" title="Đường dẫn trực tiếp đến Cách áp dụng REST hiệu quả">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-chiến-lược-áp-dụng-adoption-strategy"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-chiến-lược-áp-dụng-adoption-strategy" title="Đường dẫn trực tiếp đến 1-chiến-lược-áp-dụng-adoption-strategy">​</a></h3>
+<p><strong>Phase 1: Design &amp; Planning</strong></p>
+<ul>
+<li><strong>API Design</strong>: Thiết kế RESTful API structure</li>
+<li><strong>Resource Modeling</strong>: Xác định resources và relationships</li>
+<li><strong>URL Design</strong>: Thiết kế URL structure</li>
+<li><strong>HTTP Methods</strong>: Mapping business operations với HTTP methods</li>
+</ul>
+<p><strong>Phase 2: Implementation</strong></p>
+<ul>
+<li><strong>Controller Design</strong>: Implement REST controllers</li>
+<li><strong>Validation</strong>: Input validation và error handling</li>
+<li><strong>Response Format</strong>: Standardize response format</li>
+<li><strong>Status Codes</strong>: Proper HTTP status codes</li>
+</ul>
+<p><strong>Phase 3: Testing &amp; Documentation</strong></p>
+<ul>
+<li><strong>API Testing</strong>: Comprehensive API testing</li>
+<li><strong>Documentation</strong>: API documentation (OpenAPI/Swagger)</li>
+<li><strong>Performance Testing</strong>: Load testing và optimization</li>
+<li><strong>Security Testing</strong>: Security testing và validation</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-best-practices-khi-áp-dụng"><strong>2. Best Practices khi áp dụng:</strong><a href="#2-best-practices-khi-áp-dụng" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-best-practices-khi-áp-dụng" title="Đường dẫn trực tiếp đến 2-best-practices-khi-áp-dụng">​</a></h3>
+<p><strong>Design Principles:</strong></p>
+<ul>
+<li><strong>Resource-oriented URLs</strong>: Sử dụng nouns, không phải verbs</li>
+<li><strong>HTTP Methods</strong>: Sử dụng đúng HTTP methods cho operations</li>
+<li><strong>Status Codes</strong>: Sử dụng appropriate HTTP status codes</li>
+<li><strong>Response Format</strong>: Consistent response format</li>
+</ul>
+<p><strong>Performance Optimization:</strong></p>
+<ul>
+<li><strong>Caching Strategy</strong>: Implement proper caching</li>
+<li><strong>Pagination</strong>: Handle large datasets với pagination</li>
+<li><strong>Compression</strong>: Enable gzip compression</li>
+<li><strong>CDN Usage</strong>: Sử dụng CDN cho static resources</li>
+</ul>
+<p><strong>Security &amp; Validation:</strong></p>
+<ul>
+<li><strong>Input Validation</strong>: Validate tất cả inputs</li>
+<li><strong>Authentication</strong>: Implement proper authentication</li>
+<li><strong>Authorization</strong>: Role-based access control</li>
+<li><strong>Rate Limiting</strong>: Prevent abuse với rate limiting</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-common-pitfalls-và-cách-tránh"><strong>3. Common Pitfalls và cách tránh:</strong><a href="#3-common-pitfalls-và-cách-tránh" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-common-pitfalls-và-cách-tránh" title="Đường dẫn trực tiếp đến 3-common-pitfalls-và-cách-tránh">​</a></h3>
+<p><strong>Design Issues:</strong></p>
+<ul>
+<li><strong>❌ Verb-based URLs</strong>: Sử dụng nouns thay vì verbs</li>
+<li><strong>❌ Ignore HTTP methods</strong>: Sử dụng đúng HTTP methods</li>
+<li><strong>❌ Poor status codes</strong>: Sử dụng appropriate status codes</li>
+<li><strong>❌ Inconsistent responses</strong>: Standardize response format</li>
+</ul>
+<p><strong>Performance Issues:</strong></p>
+<ul>
+<li><strong>❌ No caching</strong>: Implement proper caching strategy</li>
+<li><strong>❌ Large responses</strong>: Sử dụng pagination cho large datasets</li>
+<li><strong>❌ No compression</strong>: Enable gzip compression</li>
+<li><strong>❌ Ignore monitoring</strong>: Monitor API performance</li>
+</ul>
+<p><strong>✅ Cách tránh:</strong></p>
+<ul>
+<li><strong>Follow REST Principles</strong>: Tuân thủ REST principles</li>
+<li><strong>Design First</strong>: Thiết kế API trước khi implement</li>
+<li><strong>Test Everything</strong>: Comprehensive testing strategy</li>
+<li><strong>Monitor Performance</strong>: Monitor và optimize performance</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rest-principles">REST Principles<a href="#rest-principles" class="hash-link" aria-label="Đường dẫn trực tiếp đến REST Principles" title="Đường dẫn trực tiếp đến REST Principles">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-client-server-architecture---lý-thuyết-và-thực-hành"><strong>1. Client-Server Architecture - Lý thuyết và Thực hành</strong><a href="#1-client-server-architecture---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-client-server-architecture---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 1-client-server-architecture---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Client-Server Architecture:</strong>
+REST sử dụng client-server architecture nơi client và server hoạt động độc lập. Client chịu trách nhiệm về user interface và user experience, server chịu trách nhiệm về business logic và data storage.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Separation of Concerns</strong>: Client và server có responsibilities riêng biệt</li>
+<li><strong>Independent Evolution</strong>: Có thể phát triển client và server độc lập</li>
+<li><strong>Scalability</strong>: Có thể scale client và server riêng biệt</li>
+<li><strong>Technology Diversity</strong>: Client và server có thể sử dụng technologies khác nhau</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Client Request</strong>: Client gửi HTTP request đến server</li>
+<li><strong>Server Processing</strong>: Server xử lý request và business logic</li>
+<li><strong>Response Generation</strong>: Server trả về response</li>
+<li><strong>Client Handling</strong>: Client xử lý response và update UI</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Client State</strong>: Idle → Requesting → Processing → Updated</li>
+<li><strong>Server State</strong>: Idle → Processing → Responding → Idle</li>
+<li><strong>Data State</strong>: Unchanged → Modified → Updated → Synchronized</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Modularity</strong>: Client và server có thể develop độc lập</li>
+<li><strong>Scalability</strong>: Scale client và server riêng biệt</li>
+<li><strong>Technology Flexibility</strong>: Sử dụng technologies khác nhau</li>
+<li><strong>Maintainability</strong>: Dễ maintain và update</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Network Dependency</strong>: Phụ thuộc vào network connectivity</li>
+<li><strong>Latency</strong>: Network latency ảnh hưởng performance</li>
+<li><strong>Security</strong>: Cần implement security cho network communication</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-stateless-communication---lý-thuyết-và-thực-hành"><strong>2. Stateless Communication - Lý thuyết và Thực hành</strong><a href="#2-stateless-communication---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-stateless-communication---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 2-stateless-communication---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Stateless Communication:</strong>
+REST sử dụng stateless communication, nghĩa là mỗi request chứa đầy đủ thông tin cần thiết để server xử lý. Server không lưu trữ state giữa các requests.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>No Session State</strong>: Server không lưu trữ session information</li>
+<li><strong>Independent Requests</strong>: Mỗi request độc lập với requests trước</li>
+<li><strong>Full Context</strong>: Mỗi request chứa đầy đủ context</li>
+<li><strong>Scalability</strong>: Dễ dàng scale và load balance</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Request Creation</strong>: Client tạo request với đầy đủ context</li>
+<li><strong>Request Transmission</strong>: Request được gửi đến server</li>
+<li><strong>Server Processing</strong>: Server xử lý request với context từ request</li>
+<li><strong>Response Generation</strong>: Server trả về response</li>
+<li><strong>State Reset</strong>: Server không lưu trữ state</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Created → Transmitted → Processed → Completed</li>
+<li><strong>Server State</strong>: Idle → Processing → Responding → Idle</li>
+<li><strong>Context State</strong>: Included → Transmitted → Processed → Consumed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Scalability</strong>: Dễ dàng scale horizontally</li>
+<li><strong>Load Balancing</strong>: Có thể load balance requests</li>
+<li><strong>Caching</strong>: Dễ implement caching</li>
+<li><strong>Reliability</strong>: Không bị ảnh hưởng bởi server failures</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Request Size</strong>: Requests có thể lớn hơn</li>
+<li><strong>Client Complexity</strong>: Client phải quản lý state</li>
+<li><strong>Network Overhead</strong>: Có thể gửi duplicate data</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-resource-based-urls---lý-thuyết-và-thực-hành"><strong>3. Resource-based URLs - Lý thuyết và Thực hành</strong><a href="#3-resource-based-urls---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-resource-based-urls---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 3-resource-based-urls---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Resource-based URLs:</strong>
+REST sử dụng resource-based URLs để định danh resources. URLs phản ánh cấu trúc của resources và sử dụng HTTP methods để thực hiện operations trên resources.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Noun-based URLs</strong>: Sử dụng danh từ, không phải động từ</li>
+<li><strong>Hierarchical Structure</strong>: URL phản ánh cấu trúc resource</li>
+<li><strong>Consistent Naming</strong>: Đặt tên nhất quán</li>
+<li><strong>HTTP Methods</strong>: Sử dụng HTTP methods cho operations</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Resource Identification</strong>: Xác định resource cần thao tác</li>
+<li><strong>URL Construction</strong>: Tạo URL phản ánh resource structure</li>
+<li><strong>HTTP Method Selection</strong>: Chọn HTTP method phù hợp</li>
+<li><strong>Operation Execution</strong>: Thực hiện operation trên resource</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Resource State</strong>: Identified → Located → Modified → Updated</li>
+<li><strong>URL State</strong>: Constructed → Validated → Processed → Resolved</li>
+<li><strong>Operation State</strong>: Selected → Executed → Completed → Verified</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Intuitive</strong>: URLs dễ hiểu và intuitive</li>
+<li><strong>Consistent</strong>: Consistent naming convention</li>
+<li><strong>Maintainable</strong>: Dễ maintain và update</li>
+<li><strong>SEO Friendly</strong>: URLs thân thiện với search engines</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>URL Length</strong>: URLs có thể dài và phức tạp</li>
+<li><strong>Nesting Limits</strong>: Deep nesting có thể gây vấn đề</li>
+<li><strong>Naming Conflicts</strong>: Có thể có naming conflicts</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rest-implementation-trong-nestjs">REST Implementation trong NestJS<a href="#rest-implementation-trong-nestjs" class="hash-link" aria-label="Đường dẫn trực tiếp đến REST Implementation trong NestJS" title="Đường dẫn trực tiếp đến REST Implementation trong NestJS">​</a></h2>
+<p><strong>Lý thuyết về REST trong NestJS:</strong>
+NestJS cung cấp built-in support cho REST APIs thông qua decorators và HTTP module. Nó cho phép bạn tạo RESTful APIs một cách dễ dàng với proper validation, error handling, và documentation.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>HTTP Module</strong>: Built-in HTTP module với Express/Fastify</li>
+<li><strong>Decorator-based</strong>: Sử dụng decorators để define routes</li>
+<li><strong>Validation</strong>: Built-in validation với class-validator</li>
+<li><strong>Error Handling</strong>: Global exception filters và interceptors</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Controller Definition</strong>: Định nghĩa controllers với decorators</li>
+<li><strong>Route Mapping</strong>: Map HTTP methods với controller methods</li>
+<li><strong>Request Processing</strong>: Process incoming HTTP requests</li>
+<li><strong>Response Generation</strong>: Generate và return HTTP responses</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Controller State</strong>: Unregistered → Registered → Active → Handling Requests</li>
+<li><strong>Request State</strong>: Received → Validated → Processed → Response Generated</li>
+<li><strong>Route State</strong>: Defined → Mapped → Active → Processing</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Native Integration</strong>: Tích hợp tốt với NestJS ecosystem</li>
+<li><strong>Type Safety</strong>: TypeScript support với strong typing</li>
+<li><strong>Validation</strong>: Built-in validation và transformation</li>
+<li><strong>Documentation</strong>: Easy API documentation với Swagger</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Learning Curve</strong>: Cần hiểu NestJS concepts</li>
+<li><strong>Framework Dependency</strong>: Phụ thuộc vào NestJS framework</li>
+<li><strong>Overhead</strong>: Có thể có performance overhead</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-basic-rest-controller---lý-thuyết-và-thực-hành"><strong>1. Basic REST Controller - Lý thuyết và Thực hành</strong><a href="#1-basic-rest-controller---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-basic-rest-controller---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 1-basic-rest-controller---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về REST Controller:</strong>
+REST controller trong NestJS xử lý HTTP requests và responses. Nó sử dụng decorators để map HTTP methods với controller methods và handle business logic.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Route Decorators</strong>: Sử dụng <code>@Get()</code>, <code>@Post()</code>, <code>@Put()</code>, <code>@Delete()</code></li>
+<li><strong>Parameter Decorators</strong>: Sử dụng <code>@Param()</code>, <code>@Body()</code>, <code>@Query()</code></li>
+<li><strong>Response Handling</strong>: Handle different response types</li>
+<li><strong>Error Handling</strong>: Proper error handling và status codes</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Route Registration</strong>: Decorator đăng ký route với HTTP method</li>
+<li><strong>Request Handling</strong>: Controller method nhận và xử lý request</li>
+<li><strong>Business Logic</strong>: Thực hiện business logic</li>
+<li><strong>Response Generation</strong>: Tạo và trả về response</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Route State</strong>: Unregistered → Registered → Active → Processing</li>
+<li><strong>Request State</strong>: Received → Validated → Processed → Response</li>
+<li><strong>Controller State</strong>: Idle → Processing → Responding → Idle</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Clean Architecture</strong>: Separation of concerns rõ ràng</li>
+<li><strong>Type Safety</strong>: TypeScript support với strong typing</li>
+<li><strong>Easy Testing</strong>: Dễ dàng unit test và integration test</li>
+<li><strong>Documentation</strong>: Auto-generated API documentation</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Decorator Complexity</strong>: Cần hiểu decorator syntax</li>
+<li><strong>Framework Lock-in</strong>: Phụ thuộc vào NestJS framework</li>
+<li><strong>Performance Overhead</strong>: Có thể có decorator overhead</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rest-communication-patterns">REST Communication Patterns<a href="#rest-communication-patterns" class="hash-link" aria-label="Đường dẫn trực tiếp đến REST Communication Patterns" title="Đường dẫn trực tiếp đến REST Communication Patterns">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-synchronous-communication---lý-thuyết-và-thực-hành"><strong>1. Synchronous Communication - Lý thuyết và Thực hành</strong><a href="#1-synchronous-communication---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-synchronous-communication---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 1-synchronous-communication---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Synchronous Communication:</strong>
+REST sử dụng synchronous communication pattern, nơi client gửi request và chờ response trước khi tiếp tục. Đây là pattern đơn giản nhất và dễ hiểu nhất.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Request-Response</strong>: Client gửi request, server trả về response</li>
+<li><strong>Blocking Nature</strong>: Client bị block cho đến khi nhận được response</li>
+<li><strong>HTTP Methods</strong>: Sử dụng HTTP methods chuẩn</li>
+<li><strong>Status Codes</strong>: Sử dụng HTTP status codes để indicate result</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Client Request</strong>: Client gửi HTTP request đến server</li>
+<li><strong>Server Processing</strong>: Server xử lý request</li>
+<li><strong>Response Generation</strong>: Server tạo response</li>
+<li><strong>Response Return</strong>: Server trả về response cho client</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Request State</strong>: Created → Transmitted → Processing → Completed</li>
+<li><strong>Client State</strong>: Waiting → Waiting → Processing → Ready</li>
+<li><strong>Server State</strong>: Idle → Busy → Processing → Idle</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Simple</strong>: Đơn giản, dễ implement và debug</li>
+<li><strong>Standard</strong>: Sử dụng HTTP chuẩn</li>
+<li><strong>Compatible</strong>: Tương thích với mọi platform</li>
+<li><strong>Debuggable</strong>: Dễ debug và troubleshoot</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Blocking</strong>: Client bị block</li>
+<li><strong>Performance</strong>: Không tối ưu cho high-throughput</li>
+<li><strong>Scalability</strong>: Khó scale cho high-load scenarios</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-resource-relationships---lý-thuyết-và-thực-hành"><strong>2. Resource Relationships - Lý thuyết và Thực hành</strong><a href="#2-resource-relationships---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-resource-relationships---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 2-resource-relationships---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Resource Relationships:</strong>
+REST sử dụng resource relationships để model data. Resources có thể có relationships với nhau và được thể hiện qua URL structure.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Hierarchical URLs</strong>: URLs phản ánh resource hierarchy</li>
+<li><strong>Nested Resources</strong>: Resources có thể nested trong resources khác</li>
+<li><strong>Relationship Mapping</strong>: Map relationships qua URL structure</li>
+<li><strong>Data Consistency</strong>: Maintain data consistency across relationships</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Resource Identification</strong>: Xác định resources và relationships</li>
+<li><strong>URL Design</strong>: Thiết kế URL structure phản ánh relationships</li>
+<li><strong>Data Fetching</strong>: Fetch related data qua nested URLs</li>
+<li><strong>Relationship Management</strong>: Manage relationships giữa resources</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Resource State</strong>: Identified → Located → Related → Fetched</li>
+<li><strong>Relationship State</strong>: Mapped → Validated → Processed → Established</li>
+<li><strong>Data State</strong>: Unrelated → Related → Fetched → Synchronized</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Intuitive</strong>: URL structure intuitive và dễ hiểu</li>
+<li><strong>Consistent</strong>: Consistent relationship modeling</li>
+<li><strong>Maintainable</strong>: Dễ maintain và update</li>
+<li><strong>Scalable</strong>: Có thể scale relationships</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>URL Complexity</strong>: URLs có thể phức tạp</li>
+<li><strong>Nesting Limits</strong>: Deep nesting có thể gây vấn đề</li>
+<li><strong>Performance</strong>: Nested queries có thể chậm</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-pagination--filtering---lý-thuyết-và-thực-hành"><strong>3. Pagination &amp; Filtering - Lý thuyết và Thực hành</strong><a href="#3-pagination--filtering---lý-thuyết-và-thực-hành" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-pagination--filtering---lý-thuyết-và-thực-hành" title="Đường dẫn trực tiếp đến 3-pagination--filtering---lý-thuyết-và-thực-hành">​</a></h3>
+<p><strong>Lý thuyết về Pagination &amp; Filtering:</strong>
+REST sử dụng pagination và filtering để handle large datasets. Pagination chia data thành pages, filtering cho phép query specific data.</p>
+<p><strong>Đặc điểm kỹ thuật:</strong></p>
+<ul>
+<li><strong>Query Parameters</strong>: Sử dụng query parameters cho pagination và filtering</li>
+<li><strong>Page-based</strong>: Chia data thành pages</li>
+<li><strong>Filter Criteria</strong>: Apply filters để reduce data</li>
+<li><strong>Response Metadata</strong>: Include metadata về pagination và filtering</li>
+</ul>
+<p><strong>Cách hoạt động:</strong></p>
+<ol>
+<li><strong>Parameter Parsing</strong>: Parse pagination và filtering parameters</li>
+<li><strong>Data Querying</strong>: Query data với pagination và filtering</li>
+<li><strong>Response Generation</strong>: Generate response với paginated data</li>
+<li><strong>Metadata Inclusion</strong>: Include pagination metadata</li>
+</ol>
+<p><strong>Biến đổi trong quá trình xử lý:</strong></p>
+<ul>
+<li><strong>Data State</strong>: Unfiltered → Filtered → Paginated → Formatted</li>
+<li><strong>Parameter State</strong>: Raw → Parsed → Validated → Applied</li>
+<li><strong>Response State</strong>: Generated → Formatted → Metadata Added → Completed</li>
+</ul>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li><strong>Performance</strong>: Cải thiện performance cho large datasets</li>
+<li><strong>User Experience</strong>: Better user experience với pagination</li>
+<li><strong>Scalability</strong>: Có thể handle large datasets</li>
+<li><strong>Flexibility</strong>: Flexible filtering options</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li><strong>Complexity</strong>: Implementation complexity</li>
+<li><strong>Consistency</strong>: Cần maintain consistency across pages</li>
+<li><strong>Caching</strong>: Pagination có thể complicate caching</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Đường dẫn trực tiếp đến Best Practices" title="Đường dẫn trực tiếp đến Best Practices">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-url-design---lý-thuyết-và-nguyên-tắc"><strong>1. URL Design - Lý thuyết và Nguyên tắc</strong><a href="#1-url-design---lý-thuyết-và-nguyên-tắc" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-url-design---lý-thuyết-và-nguyên-tắc" title="Đường dẫn trực tiếp đến 1-url-design---lý-thuyết-và-nguyên-tắc">​</a></h3>
+<p><strong>Nguyên tắc cơ bản:</strong></p>
+<ul>
+<li><strong>Noun-based URLs</strong>: Sử dụng danh từ, không phải động từ</li>
+<li><strong>Hierarchical Structure</strong>: URL phản ánh resource hierarchy</li>
+<li><strong>Consistent Naming</strong>: Đặt tên nhất quán</li>
+<li><strong>RESTful Conventions</strong>: Tuân thủ REST conventions</li>
+</ul>
+<p><strong>Quy tắc lựa chọn:</strong></p>
+<ol>
+<li><strong>Resource Identification</strong>: Xác định resources rõ ràng</li>
+<li><strong>Relationship Modeling</strong>: Model relationships qua URL structure</li>
+<li><strong>Naming Convention</strong>: Sử dụng consistent naming convention</li>
+<li><strong>URL Length</strong>: Giữ URLs ngắn gọn và readable</li>
+</ol>
+<p><strong>Trade-offs cần cân nhắc:</strong></p>
+<ul>
+<li><strong>Readability vs Conciseness</strong>: Balance giữa readability và conciseness</li>
+<li><strong>Hierarchy vs Flatness</strong>: Balance giữa hierarchy và flat structure</li>
+<li><strong>Consistency vs Flexibility</strong>: Balance giữa consistency và flexibility</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-http-methods-usage---lý-thuyết-và-chiến-lược"><strong>2. HTTP Methods Usage - Lý thuyết và Chiến lược</strong><a href="#2-http-methods-usage---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-http-methods-usage---lý-thuyết-và-chiến-lược" title="Đường dẫn trực tiếp đến 2-http-methods-usage---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý sử dụng HTTP Methods:</strong></p>
+<ul>
+<li><strong>GET</strong>: Retrieve data, không modify state</li>
+<li><strong>POST</strong>: Create new resources</li>
+<li><strong>PUT</strong>: Update existing resources (full update)</li>
+<li><strong>PATCH</strong>: Partial update existing resources</li>
+<li><strong>DELETE</strong>: Remove resources</li>
+</ul>
+<p><strong>Chiến lược sử dụng:</strong></p>
+<ul>
+<li><strong>Idempotency</strong>: PUT và DELETE nên idempotent</li>
+<li><strong>Safe Operations</strong>: GET operations nên safe</li>
+<li><strong>State Changes</strong>: POST, PUT, PATCH, DELETE modify state</li>
+<li><strong>Resource Creation</strong>: POST cho resource creation</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Use Correct Methods</strong>: Sử dụng đúng HTTP methods</li>
+<li><strong>Idempotent Operations</strong>: Ensure idempotency cho PUT/DELETE</li>
+<li><strong>Safe Operations</strong>: Ensure GET operations safe</li>
+<li><strong>Consistent Behavior</strong>: Maintain consistent behavior</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-error-handling---lý-thuyết-và-chiến-lược"><strong>3. Error Handling - Lý thuyết và Chiến lược</strong><a href="#3-error-handling---lý-thuyết-và-chiến-lược" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-error-handling---lý-thuyết-và-chiến-lược" title="Đường dẫn trực tiếp đến 3-error-handling---lý-thuyết-và-chiến-lược">​</a></h3>
+<p><strong>Nguyên lý xử lý lỗi:</strong></p>
+<ul>
+<li><strong>HTTP Status Codes</strong>: Sử dụng appropriate HTTP status codes</li>
+<li><strong>Error Messages</strong>: Provide meaningful error messages</li>
+<li><strong>Error Format</strong>: Consistent error response format</li>
+<li><strong>Logging</strong>: Log errors cho debugging</li>
+</ul>
+<p><strong>Chiến lược xử lý lỗi:</strong></p>
+<ul>
+<li><strong>Client Errors (4xx)</strong>: Handle client-side errors</li>
+<li><strong>Server Errors (5xx)</strong>: Handle server-side errors</li>
+<li><strong>Validation Errors</strong>: Handle validation errors</li>
+<li><strong>Business Logic Errors</strong>: Handle business logic errors</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Proper Status Codes</strong>: Sử dụng correct HTTP status codes</li>
+<li><strong>Error Details</strong>: Provide sufficient error details</li>
+<li><strong>User-friendly Messages</strong>: User-friendly error messages</li>
+<li><strong>Consistent Format</strong>: Consistent error response format</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="so-sánh-với-các-protocol-khác">So sánh với các Protocol khác<a href="#so-sánh-với-các-protocol-khác" class="hash-link" aria-label="Đường dẫn trực tiếp đến So sánh với các Protocol khác" title="Đường dẫn trực tiếp đến So sánh với các Protocol khác">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-rest-vs-grpc"><strong>1. REST vs gRPC:</strong><a href="#1-rest-vs-grpc" class="hash-link" aria-label="Đường dẫn trực tiếp đến 1-rest-vs-grpc" title="Đường dẫn trực tiếp đến 1-rest-vs-grpc">​</a></h3>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>REST</strong>: Text-based, HTTP/1.1, no multiplexing</li>
+<li><strong>gRPC</strong>: Binary protocol, HTTP/2, multiplexing, compression</li>
+<li><strong>Kết quả</strong>: gRPC nhanh hơn 2-10x tùy use case</li>
+</ul>
+<p><strong>Type Safety:</strong></p>
+<ul>
+<li><strong>REST</strong>: No built-in typing, runtime validation</li>
+<li><strong>gRPC</strong>: Strong typing, generated code, compile-time validation</li>
+<li><strong>Kết quả</strong>: gRPC ít bugs hơn, development nhanh hơn</li>
+</ul>
+<p><strong>Browser Support:</strong></p>
+<ul>
+<li><strong>REST</strong>: Full browser support, universal compatibility</li>
+<li><strong>gRPC</strong>: Limited browser support, mainly server-to-server</li>
+<li><strong>Kết quả</strong>: REST tốt hơn cho public APIs</li>
+</ul>
+<p><strong>File Upload:</strong></p>
+<ul>
+<li><strong>REST</strong>: Excellent support với multipart/form-data</li>
+<li><strong>gRPC</strong>: Limited support, memory constraints</li>
+<li><strong>Kết quả</strong>: REST tốt hơn cho file upload</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-rest-vs-graphql"><strong>2. REST vs GraphQL:</strong><a href="#2-rest-vs-graphql" class="hash-link" aria-label="Đường dẫn trực tiếp đến 2-rest-vs-graphql" title="Đường dẫn trực tiếp đến 2-rest-vs-graphql">​</a></h3>
+<p><strong>Data Fetching:</strong></p>
+<ul>
+<li><strong>REST</strong>: Fixed endpoints, có thể over-fetch hoặc under-fetch</li>
+<li><strong>GraphQL</strong>: Flexible queries, chỉ fetch data cần thiết</li>
+<li><strong>Kết quả</strong>: GraphQL tốt hơn cho complex data requirements</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li><strong>REST</strong>: Simple requests, predictable performance</li>
+<li><strong>GraphQL</strong>: Complex queries, có thể có performance issues</li>
+<li><strong>Kết quả</strong>: REST tốt hơn cho simple operations</li>
+</ul>
+<p><strong>Learning Curve:</strong></p>
+<ul>
+<li><strong>REST</strong>: Simple, well-understood</li>
+<li><strong>GraphQL</strong>: Complex, cần học query language</li>
+<li><strong>Kết quả</strong>: REST đơn giản hơn để learn</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-rest-vs-message-queues"><strong>3. REST vs Message Queues:</strong><a href="#3-rest-vs-message-queues" class="hash-link" aria-label="Đường dẫn trực tiếp đến 3-rest-vs-message-queues" title="Đường dẫn trực tiếp đến 3-rest-vs-message-queues">​</a></h3>
+<p><strong>Communication Pattern:</strong></p>
+<ul>
+<li><strong>REST</strong>: Synchronous, request-response</li>
+<li><strong>Message Queues</strong>: Asynchronous, fire-and-forget</li>
+<li><strong>Kết quả</strong>: REST cho real-time, MQ cho async processing</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>REST</strong>: API calls, web applications, real-time communication</li>
+<li><strong>Message Queues</strong>: Background jobs, event processing, decoupling</li>
+<li><strong>Kết quả</strong>: Khác nhau, không thay thế được nhau</li>
+</ul>
+<hr>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>💡 Lời khuyên tổng kết - Lý thuyết và Thực hành</div><div class="admonitionContent_BuS1"><p><strong>Nguyên tắc cơ bản:</strong></p><ul>
+<li><strong>Protocol Selection</strong>: REST phù hợp cho public APIs và web applications</li>
+<li><strong>Performance vs Simplicity</strong>: REST đơn giản nhưng performance thấp hơn gRPC</li>
+<li><strong>Compatibility vs Performance</strong>: REST universal compatible, gRPC high performance</li>
+</ul><p><strong>Quy tắc thực hành:</strong></p><ol>
+<li><strong>REST</strong>: Cho public APIs, web apps, simple CRUD operations</li>
+<li><strong>gRPC</strong>: Cho high-performance, service-to-service communication</li>
+<li><strong>GraphQL</strong>: Cho complex data requirements, flexible queries</li>
+</ol><p><strong>Lý do tại sao:</strong></p><ul>
+<li><strong>REST</strong>: Universal compatible, human readable, easy to implement</li>
+<li><strong>gRPC</strong>: High performance, strong typing, streaming support</li>
+<li><strong>GraphQL</strong>: Flexible queries, no over-fetching, single endpoint</li>
+</ul><p><strong>Cách xử lý biến đổi:</strong></p><ul>
+<li><strong>State Management</strong>: REST stateless, gRPC stateful connections</li>
+<li><strong>Error Handling</strong>: REST HTTP status codes, gRPC error codes</li>
+<li><strong>Performance Optimization</strong>: REST caching, gRPC connection pooling</li>
+</ul></div></div>
+<p><strong>Bài tiếp theo:</strong> <a href="/document/vi/docs/microservices/communication/message-queues">Message Queues</a></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/ecom-co/document/tree/main/docs/microservices/communication/rest-protocol.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Sửa trang này</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Trang tài liệu"><a class="pagination-nav__link pagination-nav__link--prev" href="/document/vi/docs/microservices/communication/grpc-protocol"><div class="pagination-nav__sublabel">Trước</div><div class="pagination-nav__label">gRPC Protocol</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/document/vi/docs/microservices/communication/message-queues"><div class="pagination-nav__sublabel">Kế tiếp</div><div class="pagination-nav__label">Message Queues</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#rest-là-gì" class="table-of-contents__link toc-highlight">REST là gì?</a></li><li><a href="#khi-nào-nên-dùng-và-khi-nào-không-nên-dùng-rest" class="table-of-contents__link toc-highlight">Khi nào nên dùng và khi nào không nên dùng REST</a><ul><li><a href="#khi-nào-nên-dùng-rest" class="table-of-contents__link toc-highlight"><strong>Khi nào NÊN dùng REST:</strong></a></li><li><a href="#khi-nào-không-nên-dùng-rest" class="table-of-contents__link toc-highlight"><strong>Khi nào KHÔNG NÊN dùng REST:</strong></a></li></ul></li><li><a href="#cách-áp-dụng-rest-hiệu-quả" class="table-of-contents__link toc-highlight">Cách áp dụng REST hiệu quả</a><ul><li><a href="#1-chiến-lược-áp-dụng-adoption-strategy" class="table-of-contents__link toc-highlight"><strong>1. Chiến lược áp dụng (Adoption Strategy):</strong></a></li><li><a href="#2-best-practices-khi-áp-dụng" class="table-of-contents__link toc-highlight"><strong>2. Best Practices khi áp dụng:</strong></a></li><li><a href="#3-common-pitfalls-và-cách-tránh" class="table-of-contents__link toc-highlight"><strong>3. Common Pitfalls và cách tránh:</strong></a></li></ul></li><li><a href="#rest-principles" class="table-of-contents__link toc-highlight">REST Principles</a><ul><li><a href="#1-client-server-architecture---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Client-Server Architecture - Lý thuyết và Thực hành</strong></a></li><li><a href="#2-stateless-communication---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. Stateless Communication - Lý thuyết và Thực hành</strong></a></li><li><a href="#3-resource-based-urls---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Resource-based URLs - Lý thuyết và Thực hành</strong></a></li></ul></li><li><a href="#rest-implementation-trong-nestjs" class="table-of-contents__link toc-highlight">REST Implementation trong NestJS</a><ul><li><a href="#1-basic-rest-controller---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Basic REST Controller - Lý thuyết và Thực hành</strong></a></li></ul></li><li><a href="#rest-communication-patterns" class="table-of-contents__link toc-highlight">REST Communication Patterns</a><ul><li><a href="#1-synchronous-communication---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>1. Synchronous Communication - Lý thuyết và Thực hành</strong></a></li><li><a href="#2-resource-relationships---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>2. Resource Relationships - Lý thuyết và Thực hành</strong></a></li><li><a href="#3-pagination--filtering---lý-thuyết-và-thực-hành" class="table-of-contents__link toc-highlight"><strong>3. Pagination &amp; Filtering - Lý thuyết và Thực hành</strong></a></li></ul></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a><ul><li><a href="#1-url-design---lý-thuyết-và-nguyên-tắc" class="table-of-contents__link toc-highlight"><strong>1. URL Design - Lý thuyết và Nguyên tắc</strong></a></li><li><a href="#2-http-methods-usage---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>2. HTTP Methods Usage - Lý thuyết và Chiến lược</strong></a></li><li><a href="#3-error-handling---lý-thuyết-và-chiến-lược" class="table-of-contents__link toc-highlight"><strong>3. Error Handling - Lý thuyết và Chiến lược</strong></a></li></ul></li><li><a href="#so-sánh-với-các-protocol-khác" class="table-of-contents__link toc-highlight">So sánh với các Protocol khác</a><ul><li><a href="#1-rest-vs-grpc" class="table-of-contents__link toc-highlight"><strong>1. REST vs gRPC:</strong></a></li><li><a href="#2-rest-vs-graphql" class="table-of-contents__link toc-highlight"><strong>2. REST vs GraphQL:</strong></a></li><li><a href="#3-rest-vs-message-queues" class="table-of-contents__link toc-highlight"><strong>3. REST vs Message Queues:</strong></a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
