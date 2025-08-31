@@ -8,6 +8,7 @@
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "gh-pages -d build",
+    "deploy:verbose": "echo '🚀 Starting deployment...' && gh-pages -d build && echo '✅ Deployment completed!' && echo '🌐 Your site is available at: https://ecom-co.github.io/document/'",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
