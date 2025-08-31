@@ -13,28 +13,21 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // By default, Docusaurus generates a sidebar from the docs folder structure
   tutorialSidebar: [
     'intro',
+    'installation',
     {
       type: 'category',
-      label: 'Getting Started',
-      items: ['tutorial-basics/create-a-document'],
+      label: 'Overview',
+      items: [
+        'overview/modules',
+        'overview/controllers',
+        'overview/providers',
+        'overview/middleware',
+        'overview/request-lifecycle',
+      ],
     },
   ],
-
-  // Example of a manual sidebar configuration
-  /*
-  tutorialSidebar: [
-    'intro',
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-   */
 };
 
 export default sidebars;

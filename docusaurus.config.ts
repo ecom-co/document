@@ -5,9 +5,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Project',
-  tagline: 'Docs powered by Docusaurus',
+  title: 'NestJS Documentation',
+  tagline: 'A progressive Node.js framework for building efficient and scalable server-side applications',
   favicon: 'img/favicon.ico',
+
+  markdown: {
+    mermaid: true,
+  },
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -47,6 +51,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/my-org/my-docs/tree/main/',
+
         },
         blog: {
           showReadingTime: true,
@@ -70,13 +75,28 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        language: ['en', 'vi'],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchBarPosition: 'right',
+      },
+    ],
+  ],
+
+  themes: ['@docusaurus/theme-mermaid'],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Project',
+      title: 'NestJS',
       logo: {
-        alt: 'My Project Logo',
+        alt: 'NestJS Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -87,6 +107,10 @@ const config: Config = {
           label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'search',
+          position: 'right',
+        },
         {
           href: 'https://github.com/my-org/my-docs',
           label: 'GitHub',
@@ -101,15 +125,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting Started',
-              to: '/docs/intro',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [
@@ -127,19 +142,6 @@ const config: Config = {
             },
           ],
         },
-        {
-          title: 'Resources',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/my-org/my-docs',
-            },
-          ],
-        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
@@ -147,15 +149,7 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    // Algolia Search Configuration
-    algolia: {
-      appId: 'YOUR_APP_ID',
-      apiKey: 'YOUR_SEARCH_API_KEY',
-      indexName: 'YOUR_INDEX_NAME',
-      contextualSearch: true,
-      searchParameters: {},
-      searchPagePath: 'search',
-    },
+
   } satisfies Preset.ThemeConfig,
 };
 
