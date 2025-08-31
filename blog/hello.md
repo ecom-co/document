@@ -2,11 +2,7 @@
 title: Hello
 description: A simple hello blog post
 slug: hello
-authors:
-  - name: Template Author
-    title: Developer
-    url: https://github.com/my-org
-    image_url: https://github.com/github.png
+authors: [template_author]
 tags: [hello, docusaurus]
 ---
 
