@@ -19,15 +19,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://example.com',
+  url: 'https://ecom-co.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/document/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'my-org', // Usually your GitHub org/user name.
-  projectName: 'my-docs', // Usually your repo name.
+  organizationName: 'ecom-co', // Usually your GitHub org/user name.
+  projectName: 'document', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -50,7 +50,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/my-org/my-docs/tree/main/',
+            'https://github.com/ecom-co/document/tree/main/',
 
         },
         blog: {
@@ -62,7 +62,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/my-org/my-docs/tree/main/',
+            'https://github.com/ecom-co/document/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -112,7 +112,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/my-org/my-docs',
+          href: 'https://github.com/ecom-co/document',
           label: 'GitHub',
           position: 'right',
         },
