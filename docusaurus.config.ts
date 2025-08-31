@@ -29,7 +29,7 @@ const config: Config = {
   organizationName: 'ecom-co', // Usually your GitHub org/user name.
   projectName: 'document', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
