@@ -36,9 +36,9 @@ A complete Docusaurus template configured according to the Vietnamese configurat
 - **links**: Three sections - Docs, Community, Resources
 - **copyright**: Copyright notice with current year
 
-### ✅ 7. Search (Optional)
-- Algolia search configuration placeholder included
-- Commented out - ready to be configured with your credentials
+### ✅ 7. Search (Enabled)
+- Algolia search configuration enabled and ready to use
+- Configure with your Algolia credentials to activate search functionality
 
 ### ✅ 8. Sidebar (sidebars.ts)
 - Configured with Getting Started category
@@ -82,8 +82,8 @@ const config: Config = {
 }
 ```
 
-### Enable Algolia Search
-Uncomment and configure the Algolia section in `docusaurus.config.ts`:
+### Configure Algolia Search
+The Algolia search has been enabled in `docusaurus.config.ts`. To use it with your own search index, update the configuration:
 
 ```typescript
 algolia: {
@@ -93,6 +93,8 @@ algolia: {
   contextualSearch: true,
 },
 ```
+
+Replace the placeholder values with your actual Algolia credentials.
 
 ### Add New Languages
 1. Add locale to the `i18n.locales` array in `docusaurus.config.ts`
