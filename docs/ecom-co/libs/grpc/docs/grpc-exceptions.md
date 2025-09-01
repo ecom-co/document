@@ -450,12 +450,17 @@ classDiagram
         +stack?: string
     }
 
+    class OtherGrpcExceptions {
+        +Note: Additional custom exceptions
+        +can be extended from BaseGrpcException
+    }
+
     RpcException <|-- BaseGrpcException
     BaseGrpcException <|-- GrpcValidationException
     BaseGrpcException <|-- GrpcNotFoundException
     BaseGrpcException <|-- GrpcConflictException
     BaseGrpcException <|-- GrpcInternalException
-    BaseGrpcException <|-- "... 11 more classes"
+    BaseGrpcException <|-- OtherGrpcExceptions
 ```
 
 ### Best Practices
