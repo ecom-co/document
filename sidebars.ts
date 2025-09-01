@@ -33,6 +33,15 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Tips & Troubleshooting',
+      items: [
+        'tips/circular-dependency',
+        'tips/memory-leaks',
+        'tips/performance-issues',
+      ],
+    },
+    {
+      type: 'category',
       label: 'HTTP & Exception Handling',
       items: [
         'http-exception/http-methods',

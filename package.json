@@ -7,9 +7,8 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "echo '🚀 Pushing to main branch to trigger GitHub Actions deployment...' && git add . && git commit -m 'Update content' && git push origin main && echo '✅ Changes pushed! GitHub Actions will automatically deploy to GitHub Pages.'",
-    
-    "deploy:verbose": "echo '🚀 Starting GitHub Actions deployment...' && git add . && git commit -m 'Update content' && git push origin main && echo '✅ Changes pushed! Check GitHub Actions tab for deployment status.' && echo '🌐 Your site will be available at: https://ecom-co.github.io/document/'",
+    "deploy": "npm run build && gh-pages -d build",
+    "deploy:verbose": "npm run build && gh-pages -d build --dotfiles",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
