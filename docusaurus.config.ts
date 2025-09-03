@@ -36,8 +36,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'vi'],
+    defaultLocale: 'vi',
+    locales: ['vi'],
   },
 
   presets: [
@@ -80,7 +80,7 @@ const config: Config = {
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
-        language: ['en', 'vi'],
+        language: ['vi'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
         searchBarPosition: 'right',

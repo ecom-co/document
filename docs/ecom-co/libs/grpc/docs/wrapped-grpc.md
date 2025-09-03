@@ -27,7 +27,7 @@ import TabItem from '@theme/TabItem';
 
 ### Cách hoạt động (tóm tắt)
 
-```mermaid:title="Sequence Diagram - WrappedGrpc với Circuit Breaker"
+```mermaid
 sequenceDiagram
   participant C as Controller/Service (HTTP)
   participant W as WrappedGrpc (Proxy)
@@ -55,7 +55,7 @@ sequenceDiagram
 
 ### Circuit Breaker State Diagram
 
-```mermaid:title="Circuit Breaker State Diagram"
+```mermaid
 stateDiagram-v2
     [*] --> Closed : Initial State
 
@@ -399,7 +399,7 @@ grpc.dispose(); // Cleanup khi không cần nữa
 
 ### Mermaid: Complete Pipeline với Circuit Breaker
 
-```mermaid:title="Complete Pipeline với Circuit Breaker"
+```mermaid
 flowchart TD
   A[Observable từ ClientGrpc] --> B{Circuit Breaker enabled?}
   B -- No --> C[Standard Pipeline]
