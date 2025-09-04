@@ -342,7 +342,7 @@ flowchart TD
   C -- No --> E[logException]
   E --> F[convertGrpcError]
   F --> G[handleGrpcStatusError]
-  G --> H[response.status(...).json(...)]
+  G --> H["response.status(...).json(...)"]
   B -- grpc --> I[toBaseGrpcException]
   I --> J[throw BaseGrpcException]
 ```
