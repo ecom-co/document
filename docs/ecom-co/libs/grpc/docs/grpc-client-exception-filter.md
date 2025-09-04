@@ -334,7 +334,7 @@ describe('UsersController with GrpcClientFilter', () => {
 
 ### Mermaid: Flow xử lý exception
 
-```mermaid"
+```mermaid
 flowchart TD
   A[GrpcClientException] --> B{mode}
   B -- http --> C{headersSent?}
