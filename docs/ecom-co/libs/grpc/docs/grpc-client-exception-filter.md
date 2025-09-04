@@ -377,7 +377,7 @@ Note: `WrappedGrpc` chỉ ném `GrpcClientException`. Việc map sang HTTP hoặ
 
 ### Sequence Diagram (http | grpc)
 
-```mermaid"
+```mermaid
 sequenceDiagram
   participant Caller as Controller/Handler
   participant Filter as GrpcClientFilter
